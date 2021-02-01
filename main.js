@@ -4,10 +4,168 @@ Jacob Rothman
 Section 2
 
 Selena Aungst
-<<Selena's Bronco ID>>
+013276146
 Section 2
 */
 
+var timer = 256
+var tickRate = 16
+var visualRate = 256
+
+var resources = {"bugs":0, "normal_frog":1}
+
+var frogCosts = {"tiny_frog":25, "small_frog":250, "medium_frog":750,
+						 "large_frog":1500, "giant_frog":3000, "black_hole_frog":10000}
+
+var frogGrowthRate = {"tiny_frog":1.25, "small_frog":1.50, "medium_frog":1.75,
+								  "large_frog":2.00, "giant_frog":2.25, "black_hole_frog":5.0}
+
+/*
+var upgradeCosts = {"old_glasses":300, "new_glasses":750,
+										"designer_glasses":2000, "old_shoes":300, "new_shoes":750,
+										"designer_shoes":2000}
+*/
+
+var unlocks = {"tiny_frog":{"bugs":25}, "small_frog":{"bugs":50},
+							 "medium_frog":{"bugs":100}, "large_frog":{"bugs":200},
+						 	 "giant_frog":{"bugs":500}, "black_hole_frog":{"bugs":2000}}
+
+var increments = [{"input":["tiny_frog"], "output":"bugs"},
+									{"input":["small_frog"], "output":"bugs"},
+									{"input":["medium_frog"], "output":"bugs"}
+									{"input":["large_frog"], "output":"bugs"}
+									{"input":["giant_frog"], "output":"bugs"}
+									{"input":["black_hole_frog"], "output":"bugs"}]
+
+var unlocks = {}
+
+function eatBugs(num){
+	resources["bugs"] += num*resources["normal_frog"]
+	updateText()
+}
+
+function buyTinyFrog(num){
+  if (resources["bugs"] >= costs["tiny_frog"]*num){
+
+		if (!resources["tiny_frog"]){
+		    resources["tiny_frog"] = 0
+		}
+
+		resources["tiny_frog"] += num
+		resources["bugs"] -= num*costs["tiny_frog"]
+
+		costs["tiny_frog"] *= growthRate["tiny_frog"]
+
+		updateText()
+  }
+};
+
+function buySmallFrog(num){
+	if (resources["bugs"] >= costs["small_frog"]*num){
+
+		if (!resources["small_frog"]){
+		    resources["small_frog"] = 0
+		}
+
+		resources["small_frog"] += num
+		resources["bugs"] -= num*costs["small_frog"]
+
+		costs["small_frog"] *= growthRate["small_frog"]
+
+		updateText()
+  }
+};
+
+function buyMediumFrog(num){
+	if (resources["bugs"] >= costs["medium_frog"]*num){
+
+		if (!resources["medium_frog"]){
+		    resources["medium_frog"] = 0
+		}
+
+		resources["medium_frog"] += num
+		resources["bugs"] -= num*costs["medium_frog"]
+
+		costs["medium_frog"] *= growthRate["medium_frog"]
+
+		updateText()
+  }
+};
+
+function buyLargeFrog(num){
+	if (resources["bugs"] >= costs["large_frog"]*num){
+
+		if (!resources["large_frog"]){
+		    resources["large_frog"] = 0
+		}
+
+		resources["large_frog"] += num
+		resources["bugs"] -= num*costs["large_frog"]
+
+		costs["large_frog"] *= growthRate["large_frog"]
+
+		updateText()
+  }
+};
+
+function buyGiantFrog(num){
+	if (resources["bugs"] >= costs["giant_frog"]*num){
+
+		if (!resources["giant_frog"]){
+		    resources["giant_frog"] = 0
+		}
+
+		resources["giant_frog"] += num
+		resources["bugs"] -= num*costs["giant_frog"]
+
+		costs["giant_frog"] *= growthRate["giant_frog"]
+
+		updateText()
+  }
+};
+
+function buyBlackHoleFrog(num){
+	if (resources["bugs"] >= costs["black_hole_frog"]*num){
+
+		if (!resources["black_hole_frog"]){
+		    resources["black_hole_frog"] = 0
+		}
+
+		resources["black_hole_frog"] += num
+		resources["bugs"] -= num*costs["black_hole_frog"]
+
+		costs["black_hole_frog"] *= growthRate["black_hole_frog"]
+
+		updateText()
+  }
+};
+
+
+window.setInterval(function(){
+    timer += tickRate
+
+
+    for (var increment of increments){
+	total = 1
+	for (var input of increment["input"]){
+	    total *= resources[input]
+
+	}
+	if (total){
+	    console.log(total)
+	    resources[increment["output"]] += total/tickRate
+	}
+    }
+
+    if (timer > visualRate){
+	timer -= visualRate
+	updateText()
+    }
+
+
+}, tickRate);
+
+/*
 var timer = 256
 var tickRate = 16
 var visualRate = 256
@@ -122,3 +280,4 @@ window.setInterval(function(){
 
 
 }, tickRate);
+*/
