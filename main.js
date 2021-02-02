@@ -32,9 +32,9 @@ var unlocks = {"tiny_frog":{"bugs":25}, "small_frog":{"bugs":50},
 
 var increments = [{"input":["tiny_frog"], "output":"bugs"},
 									{"input":["small_frog"], "output":"bugs"},
-									{"input":["medium_frog"], "output":"bugs"}
-									{"input":["large_frog"], "output":"bugs"}
-									{"input":["giant_frog"], "output":"bugs"}
+									{"input":["medium_frog"], "output":"bugs"},
+									{"input":["large_frog"], "output":"bugs"},
+									{"input":["giant_frog"], "output":"bugs"},
 									{"input":["black_hole_frog"], "output":"bugs"}]
 
 var unlocks = {}
@@ -164,6 +164,10 @@ window.setInterval(function(){
 
 
 }, tickRate);
+
+function updateText(){
+	document.getElementById('num_bugs').innerHTML = resources['bugs'];
+}
 
 /*
 var timer = 256
