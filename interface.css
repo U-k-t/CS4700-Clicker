@@ -40,7 +40,7 @@ button:active {
 #main {
   display: grid;
   grid-area: main;
-  grid-template-areas: "left right"
+  grid-template-areas: "left right";
 }
 
 #shop {
@@ -61,7 +61,7 @@ svg {
 #hunger_gauge {
   display: grid;
   grid-template-areas: "low_gauge";
-  grid-template-colums: 1fr;
+  grid-template-columns: 1fr;
 }
 
 .gauge_rect {
