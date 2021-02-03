@@ -45,96 +45,96 @@ function eatBugs(num){
 }
 
 function buyTinyFrog(num){
-  if (resources["bugs"] >= costs["tiny_frog"]*num){
+  if (resources["bugs"] >= frogCosts["tiny_frog"]*num){
 
 		if (!resources["tiny_frog"]){
 		    resources["tiny_frog"] = 0
 		}
 
 		resources["tiny_frog"] += num
-		resources["bugs"] -= num*costs["tiny_frog"]
+		resources["bugs"] -= num*frogCosts["tiny_frog"]
 
-		costs["tiny_frog"] *= growthRate["tiny_frog"]
+		frogCosts["tiny_frog"] *= frogGrowthRate["tiny_frog"]
 
 		updateText()
   }
 };
 
 function buySmallFrog(num){
-	if (resources["bugs"] >= costs["small_frog"]*num){
+	if (resources["bugs"] >= frogCosts["small_frog"]*num){
 
 		if (!resources["small_frog"]){
 		    resources["small_frog"] = 0
 		}
 
 		resources["small_frog"] += num
-		resources["bugs"] -= num*costs["small_frog"]
+		resources["bugs"] -= num*frogCosts["small_frog"]
 
-		costs["small_frog"] *= growthRate["small_frog"]
+		frogCosts["small_frog"] *= frogGrowthRate["small_frog"]
 
 		updateText()
   }
 };
 
 function buyMediumFrog(num){
-	if (resources["bugs"] >= costs["medium_frog"]*num){
+	if (resources["bugs"] >= frogCosts["medium_frog"]*num){
 
 		if (!resources["medium_frog"]){
 		    resources["medium_frog"] = 0
 		}
 
 		resources["medium_frog"] += num
-		resources["bugs"] -= num*costs["medium_frog"]
+		resources["bugs"] -= num*frogCosts["medium_frog"]
 
-		costs["medium_frog"] *= growthRate["medium_frog"]
+		frogCosts["medium_frog"] *= frogGrowthRate["medium_frog"]
 
 		updateText()
   }
 };
 
 function buyLargeFrog(num){
-	if (resources["bugs"] >= costs["large_frog"]*num){
+	if (resources["bugs"] >= frogCosts["large_frog"]*num){
 
 		if (!resources["large_frog"]){
 		    resources["large_frog"] = 0
 		}
 
 		resources["large_frog"] += num
-		resources["bugs"] -= num*costs["large_frog"]
+		resources["bugs"] -= num*frogCosts["large_frog"]
 
-		costs["large_frog"] *= growthRate["large_frog"]
+		frogCosts["large_frog"] *= frogGrowthRate["large_frog"]
 
 		updateText()
   }
 };
 
 function buyGiantFrog(num){
-	if (resources["bugs"] >= costs["giant_frog"]*num){
+	if (resources["bugs"] >= frogCosts["giant_frog"]*num){
 
 		if (!resources["giant_frog"]){
 		    resources["giant_frog"] = 0
 		}
 
 		resources["giant_frog"] += num
-		resources["bugs"] -= num*costs["giant_frog"]
+		resources["bugs"] -= num*frogCosts["giant_frog"]
 
-		costs["giant_frog"] *= growthRate["giant_frog"]
+		frogCosts["giant_frog"] *= frogGrowthRate["giant_frog"]
 
 		updateText()
   }
 };
 
 function buyBlackHoleFrog(num){
-	if (resources["bugs"] >= costs["black_hole_frog"]*num){
+	if (resources["bugs"] >= frogCosts["black_hole_frog"]*num){
 
 		if (!resources["black_hole_frog"]){
 		    resources["black_hole_frog"] = 0
 		}
 
 		resources["black_hole_frog"] += num
-		resources["bugs"] -= num*costs["black_hole_frog"]
+		resources["bugs"] -= num*frogCosts["black_hole_frog"]
 
-		costs["black_hole_frog"] *= growthRate["black_hole_frog"]
+		frogCosts["black_hole_frog"] *= frogGrowthRate["black_hole_frog"]
 
 		updateText()
   }
@@ -194,28 +194,28 @@ function mineGold(num){
 };
 
 function upgradeMinerPickaxe(num){
-    if (resources["gold"] >= costs["miner_pickaxe"]*num){
+    if (resources["gold"] >= frogCosts["miner_pickaxe"]*num){
 	resources["miner_pickaxe"] += num
-	resources["gold"] -= num*costs["miner_pickaxe"]
+	resources["gold"] -= num*frogCosts["miner_pickaxe"]
 
-	costs["miner_pickaxe"] *= growthRate["miner_pickaxe"]
+	frogCosts["miner_pickaxe"] *= frogGrowthRate["miner_pickaxe"]
 
 	updateText()
     }
 };
 
 function upgradePickaxe(num){
-    if (resources["gold"] >= costs["pickaxe"]*num){
+    if (resources["gold"] >= frogCosts["pickaxe"]*num){
 	resources["pickaxe"] += num
-	resources["gold"] -= num*costs["pickaxe"]
+	resources["gold"] -= num*frogCosts["pickaxe"]
 
-	costs["pickaxe"] *= growthRate["pickaxe"]
+	frogCosts["pickaxe"] *= frogGrowthRate["pickaxe"]
 
 	updateText()
     }
 };
 function hireMiner(num){
-    if (resources["gold"] >= costs["miner"]*num){
+    if (resources["gold"] >= frogCosts["miner"]*num){
 	if (!resources["miner"]){
 	    resources["miner"] = 0
 	}
@@ -223,9 +223,9 @@ function hireMiner(num){
 	    resources["miner_pickaxe"] = 1
 	}
 	resources["miner"] += num
-	resources["gold"] -= num*costs["miner"]
+	resources["gold"] -= num*frogCosts["miner"]
 
-	costs["miner"] *= growthRate["miner"]
+	frogCosts["miner"] *= frogGrowthRate["miner"]
 
 	updateText()
 
@@ -255,7 +255,7 @@ function updateText(){
     }
     for (var key in costs){
 	for (var element of document.getElementsByClassName(key+"_cost")){
-	    element.innerHTML = costs[key].toFixed(2)
+	    element.innerHTML = frogCosts[key].toFixed(2)
 	}
     }
 };
