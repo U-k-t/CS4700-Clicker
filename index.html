@@ -16,6 +16,15 @@ Section 2
   <script type="text/javascript" src="main.js"></script>
 </head>
 
+<style>
+body {
+  background-image: url('assets/frog_pond.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+
 <body>
 
   <div id="window">
@@ -27,6 +36,7 @@ Section 2
         </div>
         <div id=bug_counter>
           Bugs Caught: <span id=num_bugs>0</span><br>
+          Bugs Per Second: <span id=num_bps>0</span><br>
           <button onClick="eatBugs(1)">Eat Bugs</button>
         </div>
         <div id="hunger_gauge">
@@ -38,16 +48,36 @@ Section 2
         </div>
       </div>
       <div id="right_panel">
-        <canvas class="clickers"></canvas>
-        <canvas class="clickers"></canvas>
-        <canvas class="clickers"></canvas>
-        <canvas class="clickers"></canvas>
-        <canvas class="clickers"></canvas>
+        <div id="frogs_label">Frogs</div>
+        <div id="tiny_frog_label">Tiny Frogs: <span id=num_tiny>0</span></div>
+        <canvas id="tiny_frog_home" class="clickers"></canvas>
+        <div id="tiny_frog_label">Small Frogs: <span id=num_small>0</span></div>
+        <canvas id="small_frog_home" class="clickers"></canvas>
+        <div id="medium_frog_label">Medium Frogs: <span id=num_medium>0</span></div>
+        <canvas id="medium_frog_home" class="clickers"></canvas>
+        <div id="large_frog_label">Large Frogs: <span id=num_large>0</span></div>
+        <canvas id="large_frog_home" class="clickers"></canvas>
+        <div id="giant_frog_label">Giant Frogs: <span id=num_giant>0</span></div>
+        <canvas id="giant_frog_home" class="clickers"></canvas>
+        <div id="black_hole_frog_label">Black Hole Frogs: <span id=num_black_hole>0</span></div>
+        <canvas id="black_hole_frog_home" class="clickers"></canvas>
       </div>
     </div>
     <div id="shop">
       <div class="column">
-        <button id = "shop_tiny_frog" type="button" onClick = "buyTinyFrog(1)"> Invite Tiny Frog</button>
+        <div id="shop_label">Shop</div>
+        <div id="tiny_counter">Cost: <span id=cost_tiny>0</span> Bugs</div>
+        <button id="shop_tiny_frog" type="button" onClick = "buyTinyFrog(1)"> Invite Tiny Frog</button>
+        <div id="small_counter">Cost: <span id=cost_small>0</span> Bugs</div>
+        <button id= "shop_small_frog" type="button" onClick = "buySmallFrog(1)"> Invite Small Frog</button>
+        <div id="medium_counter">Cost: <span id=cost_medium>0</span> Bugs</div>
+        <button id= "shop_medium_frog" type="button" onClick = "buyMediumFrog(1)"> Invite Medium Frog</button>
+        <div id="large_counter">Cost: <span id=cost_large>0</span> Bugs</div>
+        <button id= "shop_large_frog" type="button" onClick = "buyLargeFrog(1)"> Invite Large Frog</button>
+        <div id="giant_counter">Cost: <span id=cost_giant>0</span> Bugs</div>
+        <button id= "shop_giant_frog" type="button" onClick = "buyGiantFrog(1)"> Invite Giant Frog</button>
+        <div id="black_hole_counter">Cost: <span id=cost_black_hole>0</span> Bugs</div>
+        <button id= "shop_black_hole_frog" type="button" onClick = "buyBlackHoleFrog(1)"> Invite Black Hole Frog</button>
         <button style="display:none" class="show_pickaxe" onClick="upgradePickaxe(1)">Upgrade Pickaxe: $<span class="pickaxe_cost"></span></button>
         <button style="display:none" class="show_miner" onClick="hireMiner(1)">Hire Miners: $<span class="miner_cost"></span></button>
         <button style="display:none" class="show_miner" onClick="upgradeMinerPickaxe(1)">Upgrade Miners' Pickaxes: $<span class="miner_pickaxe_cost"></span></button>
@@ -58,12 +88,3 @@ Section 2
 </body>
 
 </html>
-
-<!-- Begin Summerville Code -->
-<!-- <div class="column">
-  Gold: <span class="gold"></span>
-  <span style="display:none" class="show_pickaxe">Pickaxe Level: <span class="pickaxe"></span></span>
-  <span style="display:none" class="show_miner">Miners: <span class="miner"></span></span>
-  <span style="display:none" class="show_miner_pickaxe">Miner Pickaxe Level: <span class="miner_pickaxe"></span></span>
-</div> -->
-<!--  End Summerville Code -->
