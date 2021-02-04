@@ -23,6 +23,10 @@ var frogGrowthRate = {"tiny_frog":1.25, "small_frog":1.50, "medium_frog":1.75,
 								  "large_frog":2.00, "giant_frog":2.25, "black_hole_frog":5.0}
 
 /*
+var upgrades = {"old_glasses":0, "new_glasses":0,
+								"designer_glasses":0, "old_shoes":0, "new_shoes":0,
+								"designer_shoes":0}
+
 var upgradeCosts = {"old_glasses":300, "new_glasses":750,
 										"designer_glasses":2000, "old_shoes":300, "new_shoes":750,
 										"designer_shoes":2000}
@@ -39,9 +43,31 @@ var increments = [{"input":["tiny_frog"], "output":"bugs"},
 									{"input":["giant_frog"], "output":"bugs"},
 									{"input":["black_hole_frog"], "output":"bugs"}]
 
-var unlocks = {}
-
 function eatBugs(num){
+	/*
+	if(upgrades[old_glasses] != 0){
+		resources["bugs"] += num*resources["normal_frog"]*upgrades[old_glasses]
+	}
+	if(upgrades[new_glasses] != 0){
+		resources["bugs"] += num*resources["normal_frog"]*upgrades[new_glasses]
+	}
+	if(upgrades[designer_glasses] != 0){
+		resources["bugs"] += num*resources["normal_frog"]*upgrades[designer_glasses]
+	}
+	if(upgrades[old_shoes] != 0){
+		resources["bugs"] += num*resources["normal_frog"]*upgrades[old_shoes]
+	}
+	if(upgrades[new_shoes] != 0){
+		resources["bugs"] += num*resources["normal_frog"]*upgrades[new_shoes]
+	}
+	if(upgrades[designer_shoes] != 0){
+		resources["bugs"] += num*resources["normal_frog"]*upgrades[designer_shoes]
+	}
+	else{
+		resources["bugs"] += num*resources["normal_frog"]
+	}
+	updateText()
+	*/
 	resources["bugs"] += num*resources["normal_frog"]
 	updateText()
 }
@@ -163,6 +189,18 @@ window.setInterval(function(){
 }, tickRate);
 
 function updateText(){
+	for (var key in unlocks){
+		var unlocked = true
+		for (var criterion in unlocks[key]){
+			unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
+		}
+		if (unlocked){
+			for (var element of document.getElementsByClassName("show_"+key)){
+				element.style.display = "block"
+			}
+		}
+	}
+
 	document.getElementById('num_bugs').innerHTML = resources['bugs'];
 	//document.getElementById('num_bps').innerHTML = ;
 	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
