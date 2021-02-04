@@ -12,7 +12,9 @@ var timer = 256
 var tickRate = 16
 var visualRate = 256
 
-var resources = {"bugs":0, "normal_frog":1}
+var resources = {"bugs":0, "normal_frog":1, "tiny_frog":0, "small_frog":0,
+								"medium_frog":0, "large_frog":0, "giant_frog":0,
+								"black_hole_frog":0}
 
 var frogCosts = {"tiny_frog":25, "small_frog":250, "medium_frog":750,
 						 "large_frog":1500, "giant_frog":3000, "black_hole_frog":10000}
@@ -140,33 +142,42 @@ function buyBlackHoleFrog(num){
   }
 };
 
-
 window.setInterval(function(){
-    timer += tickRate
+  timer += tickRate
 
-
-    for (var increment of increments){
-	total = 1
-	for (var input of increment["input"]){
-	    total *= resources[input]
-
-	}
-	if (total){
-	    console.log(total)
-	    resources[increment["output"]] += total/tickRate
-	}
+  for (var increment of increments){
+		total = 1
+			for (var input of increment["input"]){
+	    	total *= resources[input]
+			}
+			if (total){
+	    	console.log(total)
+	    	resources[increment["output"]] += total/tickRate
+			}
     }
 
     if (timer > visualRate){
-	timer -= visualRate
-	updateText()
+			timer -= visualRate
+			updateText()
     }
-
-
 }, tickRate);
 
 function updateText(){
 	document.getElementById('num_bugs').innerHTML = resources['bugs'];
+	//document.getElementById('num_bps').innerHTML = ;
+	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
+	document.getElementById('num_small').innerHTML = resources['small_frog'];
+	document.getElementById('num_medium').innerHTML = resources['medium_frog'];
+	document.getElementById('num_large').innerHTML = resources['large_frog'];
+	document.getElementById('num_giant').innerHTML = resources['giant_frog'];
+	document.getElementById('num_black_hole').innerHTML = resources['black_hole_frog'];
+
+	document.getElementById('cost_tiny').innerHTML = frogCosts['tiny_frog'];
+	document.getElementById('cost_small').innerHTML = frogCosts['small_frog'];
+	document.getElementById('cost_medium').innerHTML = frogCosts['medium_frog'];
+	document.getElementById('cost_large').innerHTML = frogCosts['large_frog'];
+	document.getElementById('cost_giant').innerHTML = frogCosts['giant_frog'];
+	document.getElementById('cost_black_hole').innerHTML = frogCosts['black_hole_frog'];
 }
 
 /*
