@@ -7,6 +7,10 @@ Selena Aungst
 013276146
 Section 2
 */
+html{
+  background:url('Assets/frog_pond.png') no-repeat center center fixed;
+  font-family: verdana;
+}
 button {
   background-color: #FFFFFF;
   border-style: outset;
@@ -41,6 +45,7 @@ button:active {
   display: grid;
   grid-area: main;
   grid-template-areas: "left right";
+  grid-template-columns: 1.5fr 2.5fr;
 }
 
 #shop {
@@ -53,9 +58,23 @@ button:active {
   display: grid;
   grid-area: left;
 }
+#game_speed{
+  
+  fill:white;
+  fill-opacity:60%
+}
 
 svg {
   width: 100%;
+}
+
+#main_frog{
+  height:320px;
+  width:320px;
+  outline:none;
+  position: relative;
+  top:45%;
+  /* left:25%; */
 }
 
 #hunger_gauge {

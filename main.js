@@ -48,7 +48,7 @@ function buyTinyFrog(num){
   if (resources["bugs"] >= frogCosts["tiny_frog"]*num){
 
 		if (!resources["tiny_frog"]){
-		    resources["tiny_frog"] = 0
+		    resources["tiny_frog"] = 0;
 		}
 
 		resources["tiny_frog"] += num
