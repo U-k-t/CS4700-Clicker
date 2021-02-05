@@ -1,6 +1,7 @@
 /*
 Jacob Rothman
 013383526
+jrothman@cpp.edu
 Section 2
 
 Selena Aungst
@@ -79,9 +80,6 @@ function eatBugs(num) {
 
 
 function inviteFrog(type, num = 1) {
-  if (!resources[type + "_frog"]) {
-    resources[type + "_frog"] = 0;
-  }
   if (resources["bugs"] >= frogCosts[type + "_frog"] * num) {
 
     resources[type + "_frog"] += num
@@ -90,8 +88,21 @@ function inviteFrog(type, num = 1) {
     frogCosts[type + "_frog"] = Math.round(num * frogCosts[type + "_frog"] * (Math.pow(1.1, resources[type + "_frog"])))
     resources["bugs_per_second"] += bugsPerSecond[type + "_frog"]
 
-    updateText()
+    updateText(type)
   }
+	if (type == "black_hole"){
+		uneaten = document.getElementsByClassName('uneaten');
+		for (index in uneaten){
+			ele = uneaten[index]
+			// console.log(ele)
+			if(ele.parentElement)
+				console.log(ele.parentElement.id)
+				ele.parentElement.innerHTML = '<image id = "ribbit" src ="Assets/black_hole_frog.png"></image>'
+				// ele.id = "ribbit"
+				break;
+
+		}
+	}
 }
 
 window.setInterval(function() {
@@ -113,7 +124,7 @@ function frogClicked(bugAmt = 1) {
 }
 
 
-function updateText() {
+function updateText(type = "") {
   for (var key in unlocks) {
     var unlocked = true
     for (var criterion in unlocks[key]) {
@@ -127,7 +138,16 @@ function updateText() {
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
-  document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
+	if (type != ""){
+		document.getElementById('num_'+type).innerHTML = resources[type+"_frog"]
+		document.getElementById('cost_'+type).innerHTML = frogCosts[type+"_frog"]
+		console.log(type)
+	}
+}
+
+
+function readyDocument(){
+	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
   document.getElementById('num_small').innerHTML = resources['small_frog'];
   document.getElementById('num_medium').innerHTML = resources['medium_frog'];
   document.getElementById('num_large').innerHTML = resources['large_frog'];
