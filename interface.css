@@ -7,16 +7,10 @@ Selena Aungst
 013276146
 Section 2
 */
-html{
-  background:url('Assets/frog_pond.png') no-repeat center center fixed;
+html {
+  background: url('Assets/frog_pond.png') no-repeat center center fixed;
   font-family: verdana;
   /* background-size:100% 100%; */
-}
-
-#logo {
-  margin-bottom: 15px;
-  width: 215px;
-  height: 89px;
 }
 
 body {
@@ -52,21 +46,15 @@ button:active {
   color: #AFB2D7;
 }
 
-#game_speed {
-  height: 50px;
-  width: 300px;
+svg {
+  width: 100%;
 }
 
-#bug_counter {
-  height: 200px;
-  width: 300px;
-}
 
 /* .column {
   float: left;
   width: 50%;
 } */
-
 #window {
   display: grid;
   grid-template-areas: "main shop";
@@ -80,55 +68,70 @@ button:active {
   grid-template-columns: 1.5fr 2.5fr;
 }
 
-#shop {
-  display: grid;
-  grid-column-gap: 10px;
-  grid-area: shop;
-  justify-items: end;
-}
+
+
+/* Left Column Styling */
 
 #left_panel {
   display: grid;
   grid-area: left;
   margin-left: 15px;
 }
-#game_speed{
 
-  fill:white;
-  fill-opacity:60%
+#logo {
+  margin-bottom: 15px;
+  width: 215px;
+  height: 89px;
 }
 
-svg {
-  width: 100%;
+#game_speed {
+  height: 50px;
+  width: 300px;
+  fill: white;
+  fill-opacity: 60%
 }
 
-#main_frog{
-  height:320px;
-  width:320px;
-  outline:none;
-  position: relative;
-  top:45%;
-  /* left:25%; */
+#bug_counter {
+  display:grid;
+  height: 200px;
+  width: 300px;
+  position:absolute;
+  top: 25%;
+  justify-items:center;
 }
+.counter_text{
+  padding-bottom: 15px;
+}
+#main_frog {
+  height: 320px;
+  width: 320px;
+  outline: none;
+  position:relative;
+  top:25%;
+}
+
 #shop_label {
   margin-left: 30px;
   font-size: 24px;
+  grid-area: shop-label;
 }
 
-
-.shop_wrapper{
-  display:none;
+.shop_wrapper {
+  display: none;
 }
-.shop_button{
+
+.shop_button {
   background: #9B9EC3 no-repeat left;
   background-size: 64px 64px;
   padding-left: 50px;
-  outline:none;
+  outline: none;
 }
-.shop_button:hover{
+
+.shop_button:hover {
   background-image: #6971D0;
 }
-.shop_button:active{
+
+.shop_button:active {
   background-image: #3139A2;
 }
 
@@ -136,8 +139,8 @@ svg {
   margin-top: 35px;
 }
 
-.shop_cost{
-  margin-left:30px;
+.shop_cost {
+  margin-left: 30px;
 }
 
 #hunger_gauge {
@@ -153,21 +156,18 @@ svg {
 }
 
 #right_panel {
-  display:grid;
+  display: grid;
   grid-area: right;
   grid-row-gap: 10px;
   grid-template-areas:
-  "frogs-label"
-  "tiny-frog"
-  "small-frog"
-  "medium-frog"
-  "large-frog"
-  "giant-frog"
-  "bh-frog";
+    "frogs-label"
+    "tiny-frog"
+    "small-frog"
+    "medium-frog"
+    "large-frog"
+    "giant-frog"
+    "bh-frog";
 }
-
-
-
 
 #frogs_label {
   font-size: 24px;
@@ -176,30 +176,35 @@ svg {
   grid-area: frogs-label;
 }
 
-.canvas_wrapper{
-  display:none;
-}
-#tiny_frog_wrapper{
-  grid-area:tiny-frog;
-}
-#small_frog_wrapper{
-  grid-area:small-frog;
-}
-#medium_frog_wrapper{
-  grid-area:medium-frog;
-}
-#large_frog_wrapper{
-  grid-area:large-frog;
-}
-#giant_frog_wrapper{
-  grid-area:giant-frog;
-}
-#black_hole_frog_wrapper{
-  grid-area:bh-frog;
+.canvas_wrapper {
+  display: none;
 }
 
+#tiny_frog_wrapper {
+  grid-area: tiny-frog;
+}
 
-.frog_canvas{
+#small_frog_wrapper {
+  grid-area: small-frog;
+}
+
+#medium_frog_wrapper {
+  grid-area: medium-frog;
+}
+
+#large_frog_wrapper {
+  grid-area: large-frog;
+}
+
+#giant_frog_wrapper {
+  grid-area: giant-frog;
+}
+
+#black_hole_frog_wrapper {
+  grid-area: bh-frog;
+}
+
+.frog_canvas {
   width: 100%;
   height: 200px;
   background-image: url('assets/frog_background_seamless_small.png');
@@ -208,4 +213,11 @@ svg {
   border-color: #222B09;
   border-width: 2px;
   margin-bottom: 10px;
+}
+
+#shop {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-area: shop;
+  justify-items: end;
 }
