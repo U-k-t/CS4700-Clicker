@@ -15,7 +15,7 @@ var tickRate = 200
 var resources = {
   "bugs": 0,
   "bugs_per_second": 0,
-	"bugs_per_click":1,
+  "bugs_per_click": 1,
   "normal_frog": 1,
   "tiny_frog": 0,
   "small_frog": 0,
@@ -44,44 +44,119 @@ var bugsPerSecond = {
   "black_hole_frog": 200
 }
 
-var upgradeCosts = {"old_glasses":300, "new_glasses":750,
-										"designer_glasses":2000, "old_shoes":300, "new_shoes":750,
-										"designer_shoes":2000}
-
-var upgradeMults = {"old_glasses":1.5, "new_glasses":2,
-										"designer_glasses":2.5, "old_shoes":1.5, "new_shoes":2,
-										"designer_shoes":2.5}
-
-
-var unlocks = {"tiny_frog":{"bugs":25}, "small_frog":{"bugs":100},
-							 "medium_frog":{"bugs":500}, "large_frog":{"bugs":1500},
-						 	 "giant_frog":{"bugs":4000}, "black_hole_frog":{"bugs":10000},
-							 "old_glasses":{"bugs":300}, "new_glasses":{"bugs":750},
- 							 "designer_glasses":{"bugs":2000}, "old_shoes":{"bugs":300},
-							 "new_shoes":{"bugs":750}, "designer_shoes":{"bugs":2000}}
-
-
-
-function buyGlasses(type, num = 1){
-	if(resources["bugs"] >= upgradeCosts[type + "_glasses"] * num) {
-
-		resources[type + "_glasses"] += num
-		resources["bugs"] -= num * upgradeCosts[type + "_glasses"]
-		resources["bugs_per_click"] *= upgradeMults[type + "_glasses"]
-
-		updateText()
-	}
+var upgradeCosts = {
+  "old_glasses": 300,
+  "new_glasses": 750,
+  "designer_glasses": 2000,
+  "old_shoes": 300,
+  "new_shoes": 750,
+  "designer_shoes": 2000
 }
 
-function buyShoes(type, num = 1){
-	if(resources["bugs"] >= upgradeCosts[type + "_shoes"] * num) {
+var upgradeMults = {
+  "old_glasses": 1.5,
+  "new_glasses": 2,
+  "designer_glasses": 2.5,
+  "old_shoes": 1.5,
+  "new_shoes": 2,
+  "designer_shoes": 2.5
+}
 
-		resources[type + "_shoes"] += num
-		resources["bugs"] -= num * upgradeCosts[type + "_shoes"]
-		resources["bugs_per_second"] *= upgradeMults[type + "_shoes"]
 
-		updateText()
-	}
+var unlocks = {
+  "tiny_frog": {
+    "bugs": 25
+  },
+  "small_frog": {
+    "bugs": 100
+  },
+  "medium_frog": {
+    "bugs": 500
+  },
+  "large_frog": {
+    "bugs": 1500
+  },
+  "giant_frog": {
+    "bugs": 4000
+  },
+  "black_hole_frog": {
+    "bugs": 10000
+  },
+  "old_glasses": {
+    "bugs": 300
+  },
+  "new_glasses": {
+    "bugs": 750
+  },
+  "designer_glasses": {
+    "bugs": 2000
+  },
+  "old_shoes": {
+    "bugs": 300
+  },
+  "new_shoes": {
+    "bugs": 750
+  },
+  "designer_shoes": {
+    "bugs": 2000
+  },
+  "shoes": {
+    "bugs": 300
+  },
+  "glasses": {
+    "bugs": 300
+  }
+}
+
+
+
+function buyglasses(type, num = 1) {
+  if (resources["bugs"] >= upgradeCosts[type + "_glasses"] * num) {
+
+    resources[type + "_glasses"] += num
+    resources["bugs"] -= num * upgradeCosts[type + "_glasses"]
+    resources["bugs_per_click"] *= upgradeMults[type + "_glasses"]
+
+
+    updateText()
+		updateShop('glasses', type)
+  }
+}
+
+function buyshoes(type, num = 1) {
+  if (resources["bugs"] >= upgradeCosts[type + "_shoes"] * num) {
+
+    resources[type + "_shoes"] += num
+    resources["bugs"] -= num * upgradeCosts[type + "_shoes"]
+    resources["bugs_per_second"] *= upgradeMults[type + "_shoes"]
+
+
+    updateText()
+		updateShop('shoes', type)
+
+
+  }
+}
+
+function updateShop(shopType, itemType) {
+  shopElement = document.getElementById(shopType + '_shop')
+  shopElement.style.display = "none";
+
+  var nextType;
+  switch (itemType) {
+    case 'old':
+      nextType = 'new';
+      break;
+    case 'new':
+      nextType = 'designer';
+      break;
+    default:
+      nextType = 'obsolete';
+  }
+  shopElement.innerHTML = `<div class="shop_cost" id="${shopType}_shop_cost">Cost: <span id=cost_${shopType}>${upgradeCosts[nextType+"_"+shopType]}</span> Bugs</div>
+	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buy${shopType}('${nextType}')" style="background-image:url('assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>`
+	if(unlocks[nextType+"_"+shopType])
+		unlocks[shopType] = unlocks[nextType+"_"+shopType];
 }
 
 function eatBugs(num) {
@@ -101,19 +176,18 @@ function inviteFrog(type, num = 1) {
 
     updateText(type)
   }
-	if (type == "black_hole"){
-		uneaten = document.getElementsByClassName('uneaten');
-		for (index in uneaten){
-			ele = uneaten[index]
-			// console.log(ele)
-			if(ele.parentElement)
-				console.log(ele.parentElement.id)
-				ele.parentElement.innerHTML = '<image id = "ribbit" src ="Assets/black_hole_frog.png"></image>'
-				// ele.id = "ribbit"
-				break;
+  if (type == "black_hole") {
+    uneaten = document.getElementsByClassName('uneaten');
+    for (index in uneaten) {
+      ele = uneaten[index]
+      if (ele.parentElement) {
+        ele.parentElement.innerHTML = '<image id = "ribbit" src ="Assets/black_hole_frog.png"></image>'
+      }
 
-		}
-	}
+      break;
+
+    }
+  }
 }
 
 window.setInterval(function() {
@@ -136,7 +210,7 @@ function frogClicked(bugAmt = 1) {
 
 
 function updateText(type = "") {
-	frogsRegex = new RegExp('frog');
+  frogsRegex = new RegExp('frog');
   for (var key in unlocks) {
     var unlocked = true
     for (var criterion in unlocks[key]) {
@@ -146,25 +220,34 @@ function updateText(type = "") {
       document.getElementById(key + '_wrapper').style.display = "block";
       document.getElementById(key + '_shop').style.display = "block";
     }
+		else if (unlocked && (key == 'shoes' || key=='glasses')) {
+			element = document.getElementById(key + '_shop')
+			var obsolete = new RegExp('obsolete')
+			if (!obsolete.test(element.innerHTML))
+				element.style.display = "block"
+		}
   }
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
-	document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
-	if (type != ""){
-		document.getElementById('num_'+type).innerHTML = resources[type+"_frog"]
-		document.getElementById('cost_'+type).innerHTML = frogCosts[type+"_frog"]
-		console.log(type)
-	}
+  document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
+  if (type != "") {
+    document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
+    document.getElementById('cost_' + type).innerHTML = frogCosts[type + "_frog"]
+    console.log(type)
+  }
 }
 
 
-function readyDocument(){
-	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
-	document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
+function readyDocument() {
 
-	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
+  // Spaghetti; to fix later.
+
+  document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
+  document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
+  document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
+
+  document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
   document.getElementById('num_small').innerHTML = resources['small_frog'];
   document.getElementById('num_medium').innerHTML = resources['medium_frog'];
   document.getElementById('num_large').innerHTML = resources['large_frog'];

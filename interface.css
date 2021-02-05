@@ -140,6 +140,9 @@ svg {
 #tiny_frog_cost {
   margin-top: 35px;
 }
+#glasses_shop_cost{
+  margin-top:35px;
+}
 
 .shop_cost {
   margin-left: 30px;
@@ -194,8 +197,7 @@ svg {
   grid-area: medium-frog;
 }
 
-#large_frog_wrapper {
-  grid-area: large-frog;
+#large_frog_wrapper {grid-area: large-frog;
 }
 
 #giant_frog_wrapper {

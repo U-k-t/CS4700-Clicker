@@ -17,7 +17,7 @@ Section 2
   <link rel="stylesheet" type="text/css" href="interface.css" />
   <script type="text/javascript" src="main.js"></script>
   <title> Froggy Clicker </title>
-  <link rel="favicon" type="image/png" sizes="96x96" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
 </head>
 
 <body>
@@ -37,7 +37,7 @@ Section 2
           <div class="counter_text">
             Bugs Per Second: <span id=num_bps>0</span><br>
           </div>
-          <div class = "counter_text">
+          <div class="counter_text">
             Bugs Per Click: <span id=num_bpc>1</span><br>
           </div>
           <input id="main_frog" type="image" src="Assets/main_frog_lily.png" onClick="frogClicked(500)">
@@ -93,6 +93,16 @@ Section 2
       <div class="column">
         <div class="show_tiny_frog" id="shop_label">Shop</div>
 
+        <div class="shop_wrapper accessory" id="glasses_shop">
+          <div class="shop_cost" id="glasses_shop_cost">Cost: <span id=cost_glasses>0</span> Bugs</div>
+          <button class="shop_button"  id = "glasses_shop_button" type="button" onClick="buyglasses('old')" style="background-image:url('assets/old_glasses.png')"> Buy Old Glasses</button>
+        </div>
+
+        <div class="shop_wrapper accessory" id="shoes_shop">
+          <div class="shop_cost" id="shoes_shop_cost">Cost: <span id=cost_shoes>0</span> Bugs</div>
+          <button class="shop_button"  id = "shoes_shop_button" type="button" onClick="buyshoes('old')" style="background-image:url('assets/old_shoes.png')"> Buy Old Shoes</button>
+        </div>
+
         <div class="shop_wrapper" id="tiny_frog_shop">
           <div class="shop_cost uneaten" id="tiny_frog_cost">Cost: <span id=cost_tiny>0</span> Bugs</div>
           <button class="shop_button" type="button" onClick="inviteFrog('tiny')" style="background-image:url('assets/tiny_frog.png')"> Invite Tiny Frog</button>
@@ -126,7 +136,9 @@ Section 2
       </div>
     </div>
   </div>
-<script>readyDocument()</script>
+  <script>
+    readyDocument()
+  </script>
 </body>
 
 </html>
