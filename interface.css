@@ -6,6 +6,7 @@ Section 2
 
 Selena Aungst
 013276146
+seaungst@cpp.edu
 Section 2
 */
 html {
@@ -117,11 +118,11 @@ svg {
   grid-area: shop-label;
 }
 
-.shop_wrapper {
-  display: none;
+.shop_wrapper{
+  display:none;
 }
 
-.shop_button {
+.shop_button{
   background: #9B9EC3 no-repeat left;
   background-size: 64px 64px;
   padding-left: 50px;
