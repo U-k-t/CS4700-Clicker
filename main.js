@@ -5,12 +5,13 @@ Section 2
 
 Selena Aungst
 013276146
+seaungst@cpp.edu
 Section 2
 */
 
 var tickRate = 200
 
-var resources = {"bugs":0, "bugs_per_second":0, "normal_frog":1,
+var resources = {"bugs":0, "bugs_per_second":0, "bugs_per_click":1, "normal_frog":1,
 								"tiny_frog":0, "small_frog":0, "medium_frog":0, "large_frog":0,
 								"giant_frog":0, "black_hole_frog":0}
 
@@ -20,24 +21,60 @@ var frogCosts = {"tiny_frog":25, "small_frog":100, "medium_frog":500,
 var bugsPerSecond = {"tiny_frog":0.2, "small_frog":2, "medium_frog":10,
 						 "large_frog":30, "giant_frog":70, "black_hole_frog":200}
 
-/*
-var upgrades = {"old_glasses":0, "new_glasses":0,
-								"designer_glasses":0, "old_shoes":0, "new_shoes":0,
-								"designer_shoes":0}
-
 var upgradeCosts = {"old_glasses":300, "new_glasses":750,
 										"designer_glasses":2000, "old_shoes":300, "new_shoes":750,
 										"designer_shoes":2000}
-*/
 
+var upgradeMults = {"old_glasses":1.5, "new_glasses":2,
+										"designer_glasses":2.5, "old_shoes":1.5, "new_shoes":2,
+										"designer_shoes":2.5}
 
 var unlocks = {"tiny_frog":{"bugs":25}, "small_frog":{"bugs":100},
 							 "medium_frog":{"bugs":500}, "large_frog":{"bugs":1500},
-						 	 "giant_frog":{"bugs":4000}, "black_hole_frog":{"bugs":10000}}
+						 	 "giant_frog":{"bugs":4000}, "black_hole_frog":{"bugs":10000},
+							 "old_glasses":{"bugs":300}, "new_glasses":{"bugs":750},
+ 							 "designer_glasses":{"bugs":2000}, "old_shoes":{"bugs":300},
+							 "new_shoes":{"bugs":750}, "designer_shoes":{"bugs":2000}}
 
 function eatBugs(num){
 	resources["bugs"] += num*resources["normal_frog"]
 	updateText()
+}
+
+function frogClick() {
+	if (document.getElementById('main_frog').src == "Assets/main_frog_lilypad.png")
+  {
+      document.getElementById('main_frog').src = "Assets/main_frog_lilypad_on_click.gif";
+  }
+
+  else
+  {
+      document.getElementById('main_frog').src = "Assets/main_frog_lilypad.png";
+  }
+
+	eatBugs(resources["bugs_per_click"])
+}
+
+function buyGlasses(type, num = 1){
+	if(resources["bugs"] >= upgradeCosts[type + "_glasses"] * num) {
+
+		resources[type + "_glasses"] += num
+		resources["bugs"] -= num * upgradeCosts[type + "_glasses"]
+		resources["bugs_per_click"] *= upgradeMults[type + "_glasses"]
+
+		updateText()
+	}
+}
+
+function buyShoes(type, num = 1){
+	if(resources["bugs"] >= upgradeCosts[type + "_shoes"] * num) {
+
+		resources[type + "_shoes"] += num
+		resources["bugs"] -= num * upgradeCosts[type + "_shoes"]
+		resources["bugs_per_second"] *= upgradeMults[type + "_shoes"]
+
+		updateText()
+	}
 }
 
 function buyTinyFrog(num){
@@ -140,6 +177,7 @@ function updateText(){
 
 	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
 	document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second']*5);
+	document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
 	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
 	document.getElementById('num_small').innerHTML = resources['small_frog'];
 	document.getElementById('num_medium').innerHTML = resources['medium_frog'];

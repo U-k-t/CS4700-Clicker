@@ -5,6 +5,7 @@ Section 2
 
 Selena Aungst
 013276146
+seaungst@cpp.edu
 Section 2
 */
 html{
@@ -115,19 +116,21 @@ svg {
   font-size: 24px;
 }
 
-
 .shop_wrapper{
   display:none;
 }
+
 .shop_button{
   background: #9B9EC3 no-repeat left;
   background-size: 64px 64px;
   padding-left: 50px;
   outline:none;
 }
+
 .shop_button:hover{
   background-image: #6971D0;
 }
+
 .shop_button:active{
   background-image: #3139A2;
 }
@@ -157,9 +160,6 @@ svg {
   grid-area: right;
   grid-row-gap: 10px;
 }
-
-
-
 
 #frogs_label {
   font-size: 24px;
