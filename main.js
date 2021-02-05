@@ -12,10 +12,10 @@ Section 2
 
 var tickRate = 200
 
-<<<<<<< HEAD
 var resources = {
   "bugs": 0,
   "bugs_per_second": 0,
+	"bugs_per_click":1,
   "normal_frog": 1,
   "tiny_frog": 0,
   "small_frog": 0,
@@ -24,11 +24,7 @@ var resources = {
   "giant_frog": 0,
   "black_hole_frog": 0
 }
-=======
-var resources = {"bugs":0, "bugs_per_second":0, "bugs_per_click":1, "normal_frog":1,
-								"tiny_frog":0, "small_frog":0, "medium_frog":0, "large_frog":0,
-								"giant_frog":0, "black_hole_frog":0}
->>>>>>> 86b1ad8582e21c5629a4bba5ddd349ccc0f9c127
+
 
 var frogCosts = {
   "tiny_frog": 25,
@@ -56,26 +52,7 @@ var upgradeMults = {"old_glasses":1.5, "new_glasses":2,
 										"designer_glasses":2.5, "old_shoes":1.5, "new_shoes":2,
 										"designer_shoes":2.5}
 
-<<<<<<< HEAD
-var unlocks = {
-  "tiny_frog": {
-    "bugs": 25
-  },
-  "small_frog": {
-    "bugs": 100
-  },
-  "medium_frog": {
-    "bugs": 500
-  },
-  "large_frog": {
-    "bugs": 1500
-  },
-  "giant_frog": {
-    "bugs": 4000
-  },
-  "black_hole_frog": {
-    "bugs": 10000
-=======
+
 var unlocks = {"tiny_frog":{"bugs":25}, "small_frog":{"bugs":100},
 							 "medium_frog":{"bugs":500}, "large_frog":{"bugs":1500},
 						 	 "giant_frog":{"bugs":4000}, "black_hole_frog":{"bugs":10000},
@@ -83,24 +60,7 @@ var unlocks = {"tiny_frog":{"bugs":25}, "small_frog":{"bugs":100},
  							 "designer_glasses":{"bugs":2000}, "old_shoes":{"bugs":300},
 							 "new_shoes":{"bugs":750}, "designer_shoes":{"bugs":2000}}
 
-function eatBugs(num){
-	resources["bugs"] += num*resources["normal_frog"]
-	updateText()
-}
 
-function frogClick() {
-	if (document.getElementById('main_frog').src == "Assets/main_frog_lilypad.png")
-  {
-      document.getElementById('main_frog').src = "Assets/main_frog_lilypad_on_click.gif";
-  }
-
-  else
-  {
-      document.getElementById('main_frog').src = "Assets/main_frog_lilypad.png";
-  }
-
-	eatBugs(resources["bugs_per_click"])
-}
 
 function buyGlasses(type, num = 1){
 	if(resources["bugs"] >= upgradeCosts[type + "_glasses"] * num) {
@@ -122,24 +82,6 @@ function buyShoes(type, num = 1){
 
 		updateText()
 	}
-}
-
-function buyTinyFrog(num){
-
-		if (!resources["tiny_frog"]){
-		    resources["tiny_frog"] = 0;
-		}
-  if (resources["bugs"] >= frogCosts["tiny_frog"]*num){
-
-		resources["tiny_frog"] += num
-		resources["bugs"] -= num*frogCosts["tiny_frog"]
-
-		frogCosts["tiny_frog"] = Math.round(num*frogCosts["tiny_frog"]*(Math.pow(1.1, resources["tiny_frog"])))
-		resources["bugs_per_second"] += bugsPerSecond["tiny_frog"]
-
-		updateText()
->>>>>>> 86b1ad8582e21c5629a4bba5ddd349ccc0f9c127
-  }
 }
 
 function eatBugs(num) {
@@ -194,12 +136,13 @@ function frogClicked(bugAmt = 1) {
 
 
 function updateText(type = "") {
+	frogsRegex = new RegExp('frog');
   for (var key in unlocks) {
     var unlocked = true
     for (var criterion in unlocks[key]) {
       unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
     }
-    if (unlocked) {
+    if (unlocked && frogsRegex.test(key)) {
       document.getElementById(key + '_wrapper').style.display = "block";
       document.getElementById(key + '_shop').style.display = "block";
     }
@@ -207,6 +150,7 @@ function updateText(type = "") {
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
+	document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
 	if (type != ""){
 		document.getElementById('num_'+type).innerHTML = resources[type+"_frog"]
 		document.getElementById('cost_'+type).innerHTML = frogCosts[type+"_frog"]
@@ -215,13 +159,11 @@ function updateText(type = "") {
 }
 
 
-<<<<<<< HEAD
 function readyDocument(){
-=======
 	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-	document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second']*5);
+  document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
 	document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
->>>>>>> 86b1ad8582e21c5629a4bba5ddd349ccc0f9c127
+
 	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
   document.getElementById('num_small').innerHTML = resources['small_frog'];
   document.getElementById('num_medium').innerHTML = resources['medium_frog'];
