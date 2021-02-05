@@ -114,6 +114,7 @@ svg {
 
 #shop_label {
   margin-left: 30px;
+  margin-bottom:35px;
   font-size: 24px;
   grid-area: shop-label;
 }
@@ -135,13 +136,6 @@ svg {
 
 .shop_button:active {
   background-image: #3139A2;
-}
-
-#tiny_frog_cost {
-  margin-top: 35px;
-}
-#glasses_shop_cost{
-  margin-top:35px;
 }
 
 .shop_cost {

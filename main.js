@@ -230,7 +230,7 @@ function updateText(type = "") {
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
-  document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
+  document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
   if (type != "") {
     document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
     document.getElementById('cost_' + type).innerHTML = frogCosts[type + "_frog"]
@@ -245,7 +245,7 @@ function readyDocument() {
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
-  document.getElementById('num_bpc').innerHTML = Math.floor(resources['bugs_per_click']);
+  document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
 
   document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
   document.getElementById('num_small').innerHTML = resources['small_frog'];
