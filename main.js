@@ -126,6 +126,21 @@ window.setInterval(function(){
   eatBugs(resources["bugs_per_second"])
 }, tickRate);
 
+
+function frogClicked(bugAmt = 1){
+	const gifTest = new RegExp('.gif');
+	const frogButton = document.getElementById('main_frog');
+	if (!gifTest.test(frogButton.src)){
+		frogButton.src = 'Assets/main_frog_lilypad_on_click.gif'
+		setTimeout(function(){
+			frogButton.src = 'Assets/main_frog_lily.png'
+		}, 500)
+	}
+	eatBugs(bugAmt);
+
+}
+
+
 function updateText(){
 	for (var key in unlocks){
 		var unlocked = true
