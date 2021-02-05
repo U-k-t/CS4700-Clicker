@@ -134,6 +134,7 @@ function updateText(){
 		}
 		if (unlocked){
 			document.getElementById(key+'_wrapper').style.display = "block";
+			document.getElementById(key+'_shop').style.display = "block";
 		}
 	}
 

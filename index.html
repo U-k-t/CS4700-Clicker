@@ -70,7 +70,7 @@ Section 2
           <canvas id="giant_frog_home" class="frog_canvas"></canvas>
         </div>
 
-        <div class="canvas_wrapper" id="black_hole_wrapper">
+        <div class="canvas_wrapper" id="black_hole_frog_wrapper">
           <div class="show_black_hole_frog" id="black_hole_frog_label">Black Hole Frogs: <span id=num_black_hole>0</span></div>
           <canvas id="black_hole_frog_home" class="frog_canvas"></canvas>
         </div>
@@ -78,28 +78,40 @@ Section 2
       </div>
     </div>
 
-    
+
     <div id="shop">
       <div class="column">
         <div class="show_tiny_frog" id="shop_label">Shop</div>
 
-        <div class="show_tiny_frog" id="tiny_frog_cost">Cost: <span id=cost_tiny>0</span> Bugs</div>
-        <button class="show_tiny_frog" id="shop_tiny_frog" type="button" onClick="buyTinyFrog(1)"> Invite Tiny Frog</button>
+        <div class="shop_wrapper" id="tiny_frog_shop">
+          <div class="shop_cost" id="tiny_frog_cost">Cost: <span id=cost_tiny>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="buyTinyFrog(1)" style="background-image:url('assets/tiny_frog.png')"> Invite Tiny Frog</button>
+        </div>
 
-        <div class="show_small_frog" id="small_frog_cost">Cost: <span id=cost_small>0</span> Bugs</div>
-        <button class="show_small_frog" id="shop_small_frog" type="button" onClick="buySmallFrog(1)"> Invite Small Frog</button>
+        <div class="shop_wrapper" id="small_frog_shop">
+          <div class="shop_cost" id="small_frog_cost">Cost: <span id=cost_small>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="buySmallFrog(1)" style="background-image:url('assets/small_frog.png')"> Invite Small Frog</button>
+        </div>
 
-        <div class="show_medium_frog" id="medium_frog_cost">Cost: <span id=cost_medium>0</span> Bugs</div>
-        <button class="show_medium_frog" id="shop_medium_frog" type="button" onClick="buyMediumFrog(1)"> Invite Medium Frog</button>
+        <div class="shop_wrapper" id="medium_frog_shop">
+          <div class="shop_cost" id="medium_frog_cost">Cost: <span id=cost_medium>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="buyMediumFrog(1)" style="background-image:url('assets/medium_frog.png')"> Invite Medium Frog</button>
+        </div>
 
-        <div class="show_large_frog" id="large_frog_cost">Cost: <span id=cost_large>0</span> Bugs</div>
-        <button class="show_large_frog" id="shop_large_frog" type="button" onClick="buyLargeFrog(1)"> Invite Large Frog</button>
+        <div class="shop_wrapper" id="large_frog_shop">
+          <div class="shop_cost" id="large_frog_cost">Cost: <span id=cost_large>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="buyLargeFrog(1)" style="background-image:url('assets/large_frog.png')"> Invite Large Frog</button>
+        </div>
 
-        <div class="show_giant_frog" id="giant_frog_cost">Cost: <span id=cost_giant>0</span> Bugs</div>
-        <button class="show_giant_frog" id="shop_giant_frog" type="button" onClick="buyGiantFrog(1)"> Invite Giant Frog</button>
+        <div class="shop_wrapper" id="giant_frog_shop">
+          <div class="shop_cost" id="giant_frog_cost">Cost: <span id=cost_giant>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="buyGiantFrog(1)" style="background-image:url('assets/giant_frog.png')"> Invite Giant Frog</button>
+        </div>
 
-        <div class="show_black_hole_frog" id="black_hole_cost">Cost: <span id=cost_black_hole>0</span> Bugs</div>
-        <button class="show_black_hole_frog" id="shop_black_hole_frog" type="button" onClick="buyBlackHoleFrog(1)"> Invite Black Hole Frog</button>
+        <div class="shop_wrapper" id="black_hole_frog_shop">
+          <div class="shop_cost" id="black_hole_cost">Cost: <span id=cost_black_hole>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="buyBlackHoleFrog(1)" style="background-image:url('assets/black_hole_frog.png')"> Invite Black Hole Frog</button>
+        </div>
 
       </div>
     </div>

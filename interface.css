@@ -115,137 +115,29 @@ svg {
   font-size: 24px;
 }
 
-#shop_tiny_frog {
-  background: #9B9EC3 url('assets/tiny_frog.png') no-repeat left;
+
+.shop_wrapper{
+  display:none;
+}
+.shop_button{
+  background: #9B9EC3 no-repeat left;
   background-size: 64px 64px;
   padding-left: 50px;
+  outline:none;
 }
-
-#shop_tiny_frog:hover {
-  background: #6971D0 url('assets/tiny_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
+.shop_button:hover{
+  background-image: #6971D0;
 }
-
-#shop_tiny_frog:active {
-  background: #3139A2 url('assets/tiny_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_small_frog {
-  background: #9B9EC3 url('assets/small_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_small_frog:hover {
-  background: #6971D0 url('assets/small_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_small_frog:active {
-  background: #3139A2 url('assets/small_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_medium_frog {
-  background: #9B9EC3 url('assets/medium_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 55px;
-}
-
-#shop_medium_frog:hover {
-  background: #6971D0 url('assets/medium_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 55px;
-}
-
-#shop_medium_frog:active {
-  background: #3139A2 url('assets/medium_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 55px;
-}
-
-#shop_large_frog {
-  background: #9B9EC3 url('assets/large_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_large_frog:hover {
-  background: #6971D0 url('assets/large_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_large_frog:active {
-  background: #3139A2 url('assets/large_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_giant_frog {
-  background: #9B9EC3 url('assets/giant_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_giant_frog:hover {
-  background: #6971D0 url('assets/giant_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_giant_frog:active {
-  background: #3139A2 url('assets/giant_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_black_hole_frog {
-  background: #9B9EC3 url('assets/black_hole_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_black_hole_frog:hover {
-  background: #6971D0 url('assets/black_hole_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
-}
-
-#shop_black_hole_frog:active {
-  background: #3139A2 url('assets/black_hole_frog.png') no-repeat left;
-  background-size: 64px 64px;
-  padding-left: 50px;
+.shop_button:active{
+  background-image: #3139A2;
 }
 
 #tiny_frog_cost {
   margin-top: 35px;
-  margin-left: 30px;
 }
 
-#small_frog_cost {
-  margin-left: 30px;
-}
-
-#medium_frog_cost {
-  margin-left: 30px;
-}
-
-#large_frog_cost {
-  margin-left: 30px;
-}
-
-#giant_frog_cost {
-  margin-left: 30px;
-}
-
-#black_hole_cost {
-  margin-left: 30px;
+.shop_cost{
+  margin-left:30px;
 }
 
 #hunger_gauge {
@@ -265,6 +157,9 @@ svg {
   grid-area: right;
   grid-row-gap: 10px;
 }
+
+
+
 
 #frogs_label {
   font-size: 24px;
