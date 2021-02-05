@@ -11,30 +11,61 @@ html{
   background:url('Assets/frog_pond.png') no-repeat center center fixed;
   font-family: verdana;
 }
+
+#logo {
+  margin-bottom: 15px;
+  width: 215px;
+  height: 89px;
+}
+
+body {
+  color: #222B09;
+  font-family: Verdana, sans-serif;
+}
+
 button {
-  background-color: #FFFFFF;
+  background-color: #9B9EC3;
+  border-color: #3139A2;
   border-style: outset;
   border-radius: 5px;
-  /* color: black; */
+  color: #3139A2;
   padding: 15px 32px;
+  margin: 32px;
   text-align: center;
+  font-family: Verdana, sans-serif;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
 
 button:hover {
-  background-color: #e7e7e7;
+  background-color: #6971D0;
+  border-color: #3139A2;
+  border-style: outset;
+  border-radius: 5px;
+  color: #AFB2D7;
 }
 
 button:active {
-  background-color: #ececec;
+  background-color: #3139A2;
+  color: #AFB2D7;
+}
+
+#game_speed {
+  height: 50px;
+  width: 300px;
+}
+
+#bug_counter {
+  height: 200px;
+  width: 300px;
 }
 
 /* .column {
   float: left;
   width: 50%;
 } */
+
 #window {
   display: grid;
   grid-template-areas: "main shop";
@@ -50,6 +81,7 @@ button:active {
 
 #shop {
   display: grid;
+  grid-column-gap: 10px;
   grid-area: shop;
   justify-items: end;
 }
@@ -57,9 +89,10 @@ button:active {
 #left_panel {
   display: grid;
   grid-area: left;
+  margin-left: 15px;
 }
 #game_speed{
-  
+
   fill:white;
   fill-opacity:60%
 }
@@ -75,6 +108,142 @@ svg {
   position: relative;
   top:45%;
   /* left:25%; */
+#shop_label {
+  margin-left: 30px;
+  font-size: 24px;
+}
+
+#shop_tiny_frog {
+  background: #9B9EC3 url('assets/tiny_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_tiny_frog:hover {
+  background: #6971D0 url('assets/tiny_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_tiny_frog:active {
+  background: #3139A2 url('assets/tiny_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_small_frog {
+  background: #9B9EC3 url('assets/small_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_small_frog:hover {
+  background: #6971D0 url('assets/small_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_small_frog:active {
+  background: #3139A2 url('assets/small_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_medium_frog {
+  background: #9B9EC3 url('assets/medium_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 55px;
+}
+
+#shop_medium_frog:hover {
+  background: #6971D0 url('assets/medium_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 55px;
+}
+
+#shop_medium_frog:active {
+  background: #3139A2 url('assets/medium_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 55px;
+}
+
+#shop_large_frog {
+  background: #9B9EC3 url('assets/large_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_large_frog:hover {
+  background: #6971D0 url('assets/large_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_large_frog:active {
+  background: #3139A2 url('assets/large_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_giant_frog {
+  background: #9B9EC3 url('assets/giant_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_giant_frog:hover {
+  background: #6971D0 url('assets/giant_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_giant_frog:active {
+  background: #3139A2 url('assets/giant_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_black_hole_frog {
+  background: #9B9EC3 url('assets/black_hole_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_black_hole_frog:hover {
+  background: #6971D0 url('assets/black_hole_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#shop_black_hole_frog:active {
+  background: #3139A2 url('assets/black_hole_frog.png') no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+}
+
+#tiny_frog_cost {
+  margin-top: 35px;
+  margin-left: 30px;
+}
+
+#small_frog_cost {
+  margin-left: 30px;
+}
+
+#medium_frog_cost {
+  margin-left: 30px;
+}
+
+#large_frog_cost {
+  margin-left: 30px;
+}
+
+#giant_frog_cost {
+  margin-left: 30px;
+}
+
+#black_hole_cost {
+  margin-left: 30px;
 }
 
 #hunger_gauge {
@@ -84,21 +253,85 @@ svg {
 }
 
 .gauge_rect {
-  stroke: none;
+  stroke: #222B09;
   grid-area: low_gauge;
-  fill: #aaaabb;
+  fill: #C18FCFAA;
 }
 
 #right_panel {
-  display: grid;
+  display:grid;
   grid-area: right;
   grid-row-gap: 10px;
 }
 
-.clickers {
+#frogs_label {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#tiny_frog_home {
   width: 100%;
   height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
   border-style: solid;
-  border-color: black;
-  border-width: 1px;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#small_frog_home {
+  width: 100%;
+  height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#medium_frog_home {
+  width: 100%;
+  height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#large_frog_home {
+  width: 100%;
+  height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#giant_frog_home {
+  width: 100%;
+  height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#black_hole_frog_home {
+  width: 100%;
+  height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
 }
