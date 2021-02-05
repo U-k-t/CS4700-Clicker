@@ -1,72 +1,144 @@
 <!--
 Jacob Rothman
 013383526
+jrothman@cpp.edu
 Section 2
 
 Selena Aungst
-<<Selena's Bronco ID>>
+013276146
+seaungst@cpp.edu
 Section 2
- -->
+-->
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="interface.css" />
-    <script type="text/javascript" src="main.js"></script>
-  </head>
 
-  <body>
+<head>
+  <link rel="stylesheet" type="text/css" href="interface.css" />
+  <script type="text/javascript" src="main.js"></script>
+  <title> Froggy Clicker </title>
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+</head>
 
-        <div id = "window">
-          <div id = "main">
-            <div id = "left_panel">
-              <div id = "game_speed">
-                Game Speed (for testing purposes): <span id = "speed_label"><span><br>
-                <input id = "speed_slider" type="range"value="1" min = "1" max = "3">
-              </div>
-              <div id = "hunger_gauge">
-                <svg>
-                  <rect id = "low" class = "gauge_rect" width = "100%" height = "25%"></rect>
-                </svg>
-                <svg>
-                  <rect id = "mid" class = "gauge_rect" width = "75%" height = "25%"></rect>
-                </svg>
-                <svg>
-                  <!-- So I was going to make this 3 parts,
-                  and implemented it as such, but it was too wide.
-                  When I went to rectify it, it broke the connected-ness
-                  of the guage and figured, "no harm, no foul" just leaving
-                  it in and troubleshooting later if time permits-->
-                  <rect id = "high" class = "gauge_rect" width = "100%" height = "25%"></rect>
-                </svg>
+<body>
 
-              </div>
-            </div>
-            <div id = "right_panel">
-              <canvas class = "clickers"></canvas>
-              <canvas class = "clickers"></canvas>
-              <canvas class = "clickers"></canvas>
-              <canvas class = "clickers"></canvas>
-              <canvas class = "clickers"></canvas>
-            </div>
+  <div id="window">
+    <div id="main">
+      <div id="left_panel">
+        <img id="logo" src="assets/logo.png" alt="Froggy Clicker Logo">
+        <!-- <div id="game_speed">
+          Game Speed (for testing purposes): <span id="speed_label"></span><br>
+          <input id="speed_slider" type="range" value="1" min="1" max="3">
+        </div> -->
+        <div id="bug_counter">
+          <div class="counter_text">
+            Bugs Caught: <span id=num_bugs>0</span><br>
           </div>
-          <div id = "shop">
-            <div class="column">
-            	<button onClick="mineGold(1)">Mine Gold</button>
-            	<button style="display:none" class="show_pickaxe" onClick="upgradePickaxe(1)">Upgrade Pickaxe: $<span class="pickaxe_cost"></span></button>
-            	<button style="display:none" class="show_miner" onClick="hireMiner(1)">Hire Miners: $<span class="miner_cost"></span></button>
-            	<button style="display:none" class="show_miner" onClick="upgradeMinerPickaxe(1)">Upgrade Miners' Pickaxes: $<span class="miner_pickaxe_cost"></span></button>
-            </div>
+          <div class="counter_text">
+            Bugs Per Second: <span id=num_bps>0</span><br>
           </div>
+          <div class="counter_text">
+            Bugs Per Click: <span id=num_bpc>1</span><br>
+          </div>
+          <input id="main_frog" type="image" src="Assets/main_frog_lily.png" onClick="frogClicked()">
+
         </div>
 
-  </body>
-</html>
+        <!-- <div id="hunger_gauge">
+          <svg>
+            <rect id="outline" class="gauge_rect" width="30%" height="25%"></rect>
+            <rect class="gauge_rect" width="30%" height="25%"></rect>
+          </svg>
+        </div> -->
+      </div>
+      <div id="right_panel">
 
-<!-- Begin Summerville Code -->
-<!-- <div class="column">
-  Gold: <span class="gold"></span>
-  <span style="display:none" class="show_pickaxe">Pickaxe Level: <span class="pickaxe"></span></span>
-  <span style="display:none" class="show_miner">Miners: <span class="miner"></span></span>
-  <span style="display:none" class="show_miner_pickaxe">Miner Pickaxe Level: <span class="miner_pickaxe"></span></span>
-</div> -->
-<!--  End Summerville Code -->
+        <div class="show_tiny_frog" id="frogs_label">Frog Pond</div>
+
+        <div class="canvas_wrapper" id="tiny_frog_wrapper">
+          <div class="show_tiny_frog" id="tiny_frog_label">Tiny Frogs: <span id=num_tiny>0</span></div>
+          <canvas id="tiny_frog_home" class="frog_canvas"></canvas>
+        </div>
+
+        <div class="canvas_wrapper" id="small_frog_wrapper">
+          <div class="show_small_frog" id="small_frog_label">Small Frogs: <span id=num_small>0</span></div>
+          <canvas id="small_frog_home" class="frog_canvas"></canvas>
+        </div>
+
+        <div class="canvas_wrapper" id="medium_frog_wrapper">
+          <div class="show_medium_frog" id="medium_frog_label">Medium Frogs: <span id=num_medium>0</span></div>
+          <canvas id="medium_frog_home" class="frog_canvas"></canvas>
+        </div>
+
+        <div class="canvas_wrapper" id="large_frog_wrapper">
+          <div class="show_large_frog" id="large_frog_label">Large Frogs: <span id=num_large>0</span></div>
+          <canvas id="large_frog_home" class="frog_canvas"></canvas>
+        </div>
+
+        <div class="canvas_wrapper" id="giant_frog_wrapper">
+          <div class="show_giant_frog" id="giant_frog_label">Giant Frogs: <span id=num_giant>0</span></div>
+          <canvas id="giant_frog_home" class="frog_canvas"></canvas>
+        </div>
+
+        <div class="canvas_wrapper" id="black_hole_frog_wrapper">
+          <div class="show_black_hole_frog" id="black_hole_frog_label">Black Hole Frogs: <span id=num_black_hole>0</span></div>
+          <canvas id="black_hole_frog_home" class="frog_canvas"></canvas>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div id="shop">
+      <div class="column">
+        <div class="show_tiny_frog" id="shop_label">Frogs & Accessories</div>
+
+        <div class="shop_wrapper accessory" id="glasses_shop">
+          <div class="shop_cost" id="glasses_shop_cost">Cost: <span id=cost_glasses>300</span> Bugs</div>
+          <button class="shop_button"  id = "glasses_shop_button" type="button" onClick="buyglasses('old')" style="background-image:url('assets/old_glasses.png')"> Buy Old Glasses</button>
+        </div>
+
+        <div class="shop_wrapper accessory" id="shoes_shop">
+          <div class="shop_cost" id="shoes_shop_cost">Cost: <span id=cost_shoes>300</span> Bugs</div>
+          <button class="shop_button"  id = "shoes_shop_button" type="button" onClick="buyshoes('old')" style="background-image:url('assets/old_shoes.png')"> Buy Old Shoes</button>
+        </div>
+
+        <div class="shop_wrapper" id="tiny_frog_shop">
+          <div class="shop_cost uneaten" id="tiny_frog_cost">Invitation Fee: <span id=cost_tiny>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('tiny')" style="background-image:url('assets/tiny_frog.png')"> Invite Tiny Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="small_frog_shop">
+          <div class="shop_cost uneaten" id="small_frog_cost">Invitation Fee: <span id=cost_small>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('small')" style="background-image:url('assets/small_frog.png')"> Invite Small Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="medium_frog_shop">
+          <div class="shop_cost uneaten" id="medium_frog_cost">Invitation Fee: <span id=cost_medium>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('medium')" style="background-image:url('assets/medium_frog.png')"> Invite Medium Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="large_frog_shop">
+          <div class="shop_cost uneaten" id="large_frog_cost">Invitation Fee: <span id=cost_large>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('large')" style="background-image:url('assets/large_frog.png')"> Invite Large Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="giant_frog_shop">
+          <div class="shop_cost uneaten" id="giant_frog_cost">Invitation Fee: <span id=cost_giant>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('giant')" style="background-image:url('assets/giant_frog.png')"> Invite Giant Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="black_hole_frog_shop">
+          <div class="shop_cost uneaten" id="black_hole_cost">Invitation Fee: <span id=cost_black_hole>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('black_hole')" style="background-image:url('assets/black_hole_frog.png')"> Invite Black Hole Frog</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script>
+    readyDocument()
+  </script>
+</body>
+
+</html>

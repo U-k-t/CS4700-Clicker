@@ -1,96 +1,221 @@
 /*
 Jacob Rothman
 013383526
+jrothman@cpp.edu
 Section 2
 
 Selena Aungst
-<<Selena's Bronco ID>>
+013276146
+seaungst@cpp.edu
 Section 2
 */
+html {
+  background: url('Assets/frog_pond.png') no-repeat center center fixed;
+  font-family: verdana;
+  /* background-size:100% 100%; */
+}
+
+body {
+  color: #222B09;
+  font-family: Verdana, sans-serif;
+}
 
 button {
-    background-color: #FFFFFF;
-    border-style: outset;
-    border-radius: 5px;
-    /* color: black; */
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  background-color: #9B9EC3;
+  border-color: #3139A2;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3139A2;
+  padding: 15px 32px;
+  margin: 32px;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
 
 button:hover {
-    background-color: #e7e7e7;
+  background-color: #6971D0;
+  border-color: #3139A2;
+  border-style: outset;
+  border-radius: 5px;
+  color: #AFB2D7;
 }
 
 button:active {
-    background-color: #ececec;
+  background-color: #3139A2;
+  color: #AFB2D7;
 }
+
+svg {
+  width: 100%;
+}
+
 
 /* .column {
   float: left;
   width: 50%;
 } */
-
-#window{
-  display:grid;
+#window {
+  display: grid;
   grid-template-areas: "main shop";
   grid-template-columns: 4fr 1fr;
-
-}
-#main{
-  display:grid;
-  grid-area:main;
-  grid-template-areas: "left right"
-}
-#shop{
-  display:grid;
-  grid-area:shop;
-  justify-items:end;
-}
-#left_panel{
-  display:grid;
-  grid-area:left;
 }
 
-#hunger_gauge{
-  display:grid;
-  grid-template-areas: "low_gauge mid_gauge high_gauge";
-  grid-template-colums: 1fr 1fr 1fr;
+#main {
+  display: grid;
+  grid-area: main;
+  grid-template-areas: "left right";
+  grid-template-columns: 1.5fr 2.5fr;
 }
 
-.gauge_rect{
-  /* fill:none; */
-  stroke:none;
+
+
+/* Left Column Styling */
+
+#left_panel {
+  display: grid;
+  grid-area: left;
+  margin-left: 15px;
 }
-#low{
+
+#logo {
+  margin-bottom: 15px;
+  width: 215px;
+  height: 89px;
+}
+
+#game_speed {
+  height: 50px;
+  width: 300px;
+  fill: white;
+  fill-opacity: 60%
+}
+
+#bug_counter {
+  display:grid;
+  height: 200px;
+  width: 300px;
+  position:absolute;
+  top: 25%;
+  justify-items:center;
+}
+.counter_text{
+  padding-bottom: 15px;
+}
+#main_frog {
+  height: 320px;
+  width: 320px;
+  outline: none;
+  position:relative;
+  top:25%;
+}
+
+#shop_label {
+  margin-left: 30px;
+  margin-bottom:35px;
+  font-size: 24px;
+  grid-area: shop-label;
+}
+
+.shop_wrapper{
+  display:none;
+}
+
+.shop_button{
+  background: #9B9EC3 no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 50px;
+  outline: none;
+}
+
+.shop_button:hover {
+  background-image: #6971D0;
+}
+
+.shop_button:active {
+  background-image: #3139A2;
+}
+
+.shop_cost {
+  margin-left: 30px;
+}
+
+#hunger_gauge {
+  display: grid;
+  grid-template-areas: "low_gauge";
+  grid-template-columns: 1fr;
+}
+
+.gauge_rect {
+  stroke: #222B09;
   grid-area: low_gauge;
-  fill:#aaaabb;
-
-}
-#mid{
-  grid-area: mid_gauge;
-  fill:#aaaabb;
-
-}
-#high{
-  grid-area: high_gauge;
-  fill:none;
+  fill: #C18FCFAA;
 }
 
-
-#right_panel{
-  display:grid;
-  grid-area:right;
+#right_panel {
+  display: grid;
+  grid-area: right;
   grid-row-gap: 10px;
-
+  grid-template-areas:
+    "frogs-label"
+    "tiny-frog"
+    "small-frog"
+    "medium-frog"
+    "large-frog"
+    "giant-frog"
+    "bh-frog";
 }
 
-.clickers{
-  width:100%;
-  height:200px;
-  border-style:solid;
-  border-color:black;
-  border-width:1px;
+#frogs_label {
+  font-size: 24px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  grid-area: frogs-label;
+}
+
+.canvas_wrapper {
+  display: none;
+}
+
+#tiny_frog_wrapper {
+  grid-area: tiny-frog;
+}
+
+#small_frog_wrapper {
+  grid-area: small-frog;
+}
+
+#medium_frog_wrapper {
+  grid-area: medium-frog;
+}
+
+#large_frog_wrapper {grid-area: large-frog;
+}
+
+#giant_frog_wrapper {
+  grid-area: giant-frog;
+}
+
+#black_hole_frog_wrapper {
+  grid-area: bh-frog;
+}
+
+.frog_canvas {
+  width: 100%;
+  height: 200px;
+  background-image: url('assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#shop {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-area: shop;
+  justify-items: end;
 }
