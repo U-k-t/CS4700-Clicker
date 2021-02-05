@@ -156,6 +156,14 @@ svg {
   display:grid;
   grid-area: right;
   grid-row-gap: 10px;
+  grid-template-areas:
+  "frogs-label"
+  "tiny-frog"
+  "small-frog"
+  "medium-frog"
+  "large-frog"
+  "giant-frog"
+  "bh-frog";
 }
 
 
@@ -165,12 +173,31 @@ svg {
   font-size: 24px;
   margin-top: 10px;
   margin-bottom: 10px;
+  grid-area: frogs-label;
 }
 
 .canvas_wrapper{
-  grid-area: "wrapper";
   display:none;
 }
+#tiny_frog_wrapper{
+  grid-area:tiny-frog;
+}
+#small_frog_wrapper{
+  grid-area:small-frog;
+}
+#medium_frog_wrapper{
+  grid-area:medium-frog;
+}
+#large_frog_wrapper{
+  grid-area:large-frog;
+}
+#giant_frog_wrapper{
+  grid-area:giant-frog;
+}
+#black_hole_frog_wrapper{
+  grid-area:bh-frog;
+}
+
 
 .frog_canvas{
   width: 100%;
