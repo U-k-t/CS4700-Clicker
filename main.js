@@ -8,7 +8,7 @@ Selena Aungst
 Section 2
 */
 
-var tickRate = 1000
+var tickRate = 200
 
 var resources = {"bugs":0, "bugs_per_second":0, "normal_frog":1,
 								"tiny_frog":0, "small_frog":0, "medium_frog":0, "large_frog":0,
@@ -17,8 +17,8 @@ var resources = {"bugs":0, "bugs_per_second":0, "normal_frog":1,
 var frogCosts = {"tiny_frog":25, "small_frog":100, "medium_frog":500,
 						 "large_frog":1500, "giant_frog":4000, "black_hole_frog":10000}
 
-var bugsPerSecond = {"tiny_frog":1, "small_frog":10, "medium_frog":50,
-						 "large_frog":150, "giant_frog":350, "black_hole_frog":1000}
+var bugsPerSecond = {"tiny_frog":0.2, "small_frog":2, "medium_frog":10,
+						 "large_frog":30, "giant_frog":70, "black_hole_frog":200}
 
 /*
 var upgrades = {"old_glasses":0, "new_glasses":0,
@@ -133,14 +133,12 @@ function updateText(){
 			unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
 		}
 		if (unlocked){
-			for (var element of document.getElementsByClassName("show_"+key)){
-				element.style.display = "block"
-			}
+			document.getElementById(key+'_wrapper').style.display = "block";
 		}
 	}
 
-	document.getElementById('num_bugs').innerHTML = resources['bugs'];
-	document.getElementById('num_bps').innerHTML = resources['bugs_per_second'];
+	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
+	document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second']*5);
 	document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
 	document.getElementById('num_small').innerHTML = resources['small_frog'];
 	document.getElementById('num_medium').innerHTML = resources['medium_frog'];
