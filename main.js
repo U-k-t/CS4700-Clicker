@@ -36,12 +36,12 @@ var frogCosts = {
 }
 
 var bugsPerSecond = {
-  "tiny_frog": 0.2,
-  "small_frog": 2,
-  "medium_frog": 10,
-  "large_frog": 30,
-  "giant_frog": 70,
-  "black_hole_frog": 200
+  "tiny_frog": 0.04,
+  "small_frog": 0.2,
+  "medium_frog": 2,
+  "large_frog": 5,
+  "giant_frog": 20,
+  "black_hole_frog": 100
 }
 
 var upgradeCosts = {
@@ -229,7 +229,7 @@ function updateText(type = "") {
   }
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
+  document.getElementById('num_bps').innerHTML = resources['bugs_per_second'].toFixed(2) * 5;
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
   if (type != "") {
     document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
@@ -244,7 +244,7 @@ function readyDocument() {
   // Spaghetti; to fix later.
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = Math.floor(resources['bugs_per_second'] * 5);
+  document.getElementById('num_bps').innerHTML = resources['bugs_per_second'].toFixed(2) * 5;
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
 
   document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
