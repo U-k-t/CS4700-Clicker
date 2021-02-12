@@ -3,7 +3,6 @@ Jacob Rothman
 013383526
 jrothman@cpp.edu
 Section 2
-
 Selena Aungst
 013276146
 seaungst@cpp.edu
@@ -32,7 +31,7 @@ button {
   font-family: Verdana, sans-serif;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 button:hover {
@@ -59,15 +58,15 @@ svg {
 } */
 #window {
   display: grid;
-  grid-template-areas: "main shop";
-  grid-template-columns: 4fr 1fr;
+  grid-template-areas: "main shop accessories";
+  grid-template-columns: 3fr 1fr;
 }
 
 #main {
   display: grid;
   grid-area: main;
   grid-template-areas: "left right";
-  grid-template-columns: 1.5fr 2.5fr;
+  grid-template-columns: 1.5fr 3fr;
 }
 
 
@@ -86,20 +85,28 @@ svg {
   height: 89px;
 }
 
-#game_speed {
-  height: 50px;
-  width: 300px;
-  fill: white;
-  fill-opacity: 60%
+#bugs_logo {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 100px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
 }
 
 #bug_counter {
   display:grid;
   height: 200px;
   width: 300px;
+  padding: 20px;
   position:absolute;
   top: 25%;
-  justify-items:center;
+  justify-items:left;
 }
 .counter_text{
   padding-bottom: 15px;
@@ -108,26 +115,71 @@ svg {
   height: 320px;
   width: 320px;
   outline: none;
-  position:relative;
-  top:25%;
+  position: relative;
+  top: 25%;
 }
 
 #shop_label {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 100px;
   margin-left: 30px;
-  margin-bottom:35px;
+  margin-bottom: 10px;
   font-size: 24px;
+  background-size: 48px 48px;
   grid-area: shop-label;
 }
 
 .shop_wrapper{
   display:none;
+  position: relative;
+}
+
+.shop_wrapper .tooltiptext {
+  visibility: hidden;
+  width: 220px;
+  top: 100%;
+  left: 50%;
+  margin-left: -110px;
+  background-color: #D9BCE2;
+  color: #794E85;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.shop_wrapper .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #D9BCE2 transparent;
+}
+
+.shop_wrapper:hover .tooltiptext {
+  visibility: visible;
 }
 
 .shop_button{
   background: #9B9EC3 no-repeat left;
   background-size: 64px 64px;
-  padding-left: 50px;
+  padding-left: 60px;
   outline: none;
+}
+
+.shop_button:hover {
+  background-image: #6971D0;
 }
 
 .shop_button:hover {
@@ -169,9 +221,18 @@ svg {
 }
 
 #frogs_label {
-  font-size: 24px;
-  margin-top: 10px;
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 30px;
+  margin-left: 0px;
   margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
   grid-area: frogs-label;
 }
 
@@ -205,7 +266,7 @@ svg {
 .frog_canvas {
   width: 100%;
   height: 200px;
-  background-image: url('Assets/frog_background_seamless_small.png');
+  background-image: url('assets/frog_background_seamless_small.png');
   background-repeat: repeat-x;
   border-style: solid;
   border-color: #222B09;
@@ -218,4 +279,26 @@ svg {
   grid-column-gap: 10px;
   grid-area: shop;
   justify-items: end;
+}
+
+#accessories {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-area: accessories;
+  justify-items: end;
+}
+
+#accessories_label {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 40px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
 }
