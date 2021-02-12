@@ -3,7 +3,6 @@ Jacob Rothman
 013383526
 jrothman@cpp.edu
 Section 2
-
 Selena Aungst
 013276146
 seaungst@cpp.edu
@@ -17,7 +16,7 @@ Section 2
   <link rel="stylesheet" type="text/css" href="interface.css" />
   <script type="text/javascript" src="main.js"></script>
   <title> Froggy Clicker </title>
-  <link rel="icon" type="image/png" href="Assets/favicon.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
 </head>
 
 <body>
@@ -25,12 +24,10 @@ Section 2
   <div id="window">
     <div id="main">
       <div id="left_panel">
-        <img id="logo" src="Assets/logo.png" alt="Froggy Clicker Logo">
-        <!-- <div id="game_speed">
-          Game Speed (for testing purposes): <span id="speed_label"></span><br>
-          <input id="speed_slider" type="range" value="1" min="1" max="3">
-        </div> -->
+        <img id="logo" src="assets/logo.png" alt="Froggy Clicker Logo">
+
         <div id="bug_counter">
+          <button id="bugs_logo" disabled="disabled" style="background-image:url('assets/Bug.png')">Bugs</button>
           <div class="counter_text">
             Bugs Caught: <span id=num_bugs>0</span><br>
           </div>
@@ -53,9 +50,8 @@ Section 2
       </div>
       <div id="right_panel">
 
-        <div class="show_tiny_frog" id="frogs_label">Frog Pond</div>
-
         <div class="canvas_wrapper" id="tiny_frog_wrapper">
+          <button class="show_tiny_frog" id="frogs_label" disabled="disabled" style="background-image:url('assets/lilypad.png')">Frog Pond</button>
           <div class="show_tiny_frog" id="tiny_frog_label">Tiny Frogs: <span id=num_tiny>0</span></div>
           <canvas id="tiny_frog_home" class="frog_canvas"></canvas>
         </div>
@@ -91,9 +87,52 @@ Section 2
 
     <div id="shop">
       <div class="column">
-        <div class="show_tiny_frog" id="shop_label">Frogs & Accessories</div>
+
+        <div class="shop_wrapper" id="tiny_frog_shop">
+          <button class="show_tiny_frog" id="shop_label" disabled="disabled" style="background-image:url('assets/main_frog.png')">Frogs</button>
+          <div class="shop_cost uneaten" id="tiny_frog_cost">Invitation Fee: <span id=cost_tiny>0</span> Bugs</div>
+          <span class="tooltiptext">A tiny frog with a tiny appetite. Eats 0.2 bugs per second.</span>
+          <button class="shop_button" type="button" onClick="inviteFrog('tiny')" style="background-image:url('assets/tiny_frog.png')"> Invite Tiny Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="small_frog_shop">
+          <div class="shop_cost uneaten" id="small_frog_cost">Invitation Fee: <span id=cost_small>0</span> Bugs</div>
+          <span class="tooltiptext">A small frog with a small appetite. Eats 1 bug per second.</span>
+          <button class="shop_button" type="button" onClick="inviteFrog('small')" style="background-image:url('assets/small_frog.png')"> Invite Small Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="medium_frog_shop">
+          <span class="tooltiptext">A medium frog with a medium appetite. Eats 8 bugs per second.</span>
+          <div class="shop_cost uneaten" id="medium_frog_cost">Invitation Fee: <span id=cost_medium>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('medium')" style="background-image:url('assets/medium_frog.png')"> Invite Medium Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="large_frog_shop">
+          <span class="tooltiptext">A large frog with a large appetite. Eats 20 bugs per second.</span>
+          <div class="shop_cost uneaten" id="large_frog_cost">Invitation Fee: <span id=cost_large>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('large')" style="background-image:url('assets/large_frog.png')"> Invite Large Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="giant_frog_shop">
+          <span class="tooltiptext">A giant frog with a giant appetite. Eats 80 bugs per second.</span>
+          <div class="shop_cost uneaten" id="giant_frog_cost">Invitation Fee: <span id=cost_giant>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('giant')" style="background-image:url('assets/giant_frog.png')"> Invite Giant Frog</button>
+        </div>
+
+        <div class="shop_wrapper" id="black_hole_frog_shop">
+          <span class="tooltiptext">A frog of unimaginable size capable of devouring the entire universe. Eats 200 bugs per second, and perhaps a little more.</span>
+          <div class="shop_cost uneaten" id="black_hole_cost">Invitation Fee: <span id=cost_black_hole>0</span> Bugs</div>
+          <button class="shop_button" type="button" onClick="inviteFrog('black_hole')" style="background-image:url('assets/black_hole_frog.png')"> Invite Black Hole Frog</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="accessories">
+      <div class= "column">
 
         <div class="shop_wrapper accessory" id="glasses_shop">
+          <button class="show_tiny_frog" id="accessories_label" disabled="disabled" style="background-image:url('assets/old_glasses.png')">Accessories</button>
           <div class="shop_cost" id="glasses_shop_cost">Cost: <span id=cost_glasses>300</span> Bugs</div>
           <button class="shop_button"  id = "glasses_shop_button" type="button" onClick="buyglasses('old')" style="background-image:url('Assets/old_glasses.png')"> Buy Old Glasses</button>
         </div>
@@ -102,39 +141,9 @@ Section 2
           <div class="shop_cost" id="shoes_shop_cost">Cost: <span id=cost_shoes>300</span> Bugs</div>
           <button class="shop_button"  id = "shoes_shop_button" type="button" onClick="buyshoes('old')" style="background-image:url('Assets/old_shoes.png')"> Buy Old Shoes</button>
         </div>
-
-        <div class="shop_wrapper" id="tiny_frog_shop">
-          <div class="shop_cost uneaten" id="tiny_frog_cost">Invitation Fee: <span id=cost_tiny>0</span> Bugs</div>
-          <button class="shop_button" type="button" onClick="inviteFrog('tiny')" style="background-image:url('Assets/tiny_frog.png')"> Invite Tiny Frog</button>
-        </div>
-
-        <div class="shop_wrapper" id="small_frog_shop">
-          <div class="shop_cost uneaten" id="small_frog_cost">Invitation Fee: <span id=cost_small>0</span> Bugs</div>
-          <button class="shop_button" type="button" onClick="inviteFrog('small')" style="background-image:url('Assets/small_frog.png')"> Invite Small Frog</button>
-        </div>
-
-        <div class="shop_wrapper" id="medium_frog_shop">
-          <div class="shop_cost uneaten" id="medium_frog_cost">Invitation Fee: <span id=cost_medium>0</span> Bugs</div>
-          <button class="shop_button" type="button" onClick="inviteFrog('medium')" style="background-image:url('Assets/medium_frog.png')"> Invite Medium Frog</button>
-        </div>
-
-        <div class="shop_wrapper" id="large_frog_shop">
-          <div class="shop_cost uneaten" id="large_frog_cost">Invitation Fee: <span id=cost_large>0</span> Bugs</div>
-          <button class="shop_button" type="button" onClick="inviteFrog('large')" style="background-image:url('Assets/large_frog.png')"> Invite Large Frog</button>
-        </div>
-
-        <div class="shop_wrapper" id="giant_frog_shop">
-          <div class="shop_cost uneaten" id="giant_frog_cost">Invitation Fee: <span id=cost_giant>0</span> Bugs</div>
-          <button class="shop_button" type="button" onClick="inviteFrog('giant')" style="background-image:url('Assets/giant_frog.png')"> Invite Giant Frog</button>
-        </div>
-
-        <div class="shop_wrapper" id="black_hole_frog_shop">
-          <div class="shop_cost uneaten" id="black_hole_cost">Invitation Fee: <span id=cost_black_hole>0</span> Bugs</div>
-          <button class="shop_button" type="button" onClick="inviteFrog('black_hole')" style="background-image:url('Assets/black_hole_frog.png')"> Invite Black Hole Frog</button>
-        </div>
-
       </div>
     </div>
+
   </div>
   <script>
     readyDocument()
