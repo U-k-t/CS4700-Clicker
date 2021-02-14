@@ -8,6 +8,7 @@ Selena Aungst
 seaungst@cpp.edu
 Section 2
 */
+
 html {
   background: url('Assets/frog_pond.png') no-repeat center center fixed;
   font-family: verdana;
@@ -17,6 +18,7 @@ html {
 body {
   color: #222B09;
   font-family: Verdana, sans-serif;
+
 }
 
 button {
@@ -194,17 +196,6 @@ svg {
   margin-left: 30px;
 }
 
-#hunger_gauge {
-  display: grid;
-  grid-template-areas: "low_gauge";
-  grid-template-columns: 1fr;
-}
-
-.gauge_rect {
-  stroke: #222B09;
-  grid-area: low_gauge;
-  fill: #C18FCFAA;
-}
 
 #right_panel {
   display: grid;
@@ -292,6 +283,7 @@ svg {
   background: #FFFFFF00 no-repeat left;
   border-style: none none solid none;
   border-radius: 0px;
+  display:none;
   color: #222B09;
   padding-top: 0px;
   padding-bottom: 10px;

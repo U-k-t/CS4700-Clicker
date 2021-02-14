@@ -126,7 +126,7 @@ var unlocks = {
   }
 }
 
-function buyUpgrade(type,item){
+function buyUpgrade(type, item) {
   /*
     Applies Multiplier Effects for Upgrades
 
@@ -146,10 +146,10 @@ function buyUpgrade(type,item){
   */
 
   // Evaluate if resources are present to purchase upgrade
-  if (resources["bugs"] >= upgradeCosts[type + "_"+item]){
+  if (resources["bugs"] >= upgradeCosts[type + "_" + item]) {
 
-    resources[type + "_"+item] += 1
-    resources["bugs"] -= upgradeCosts[type + "_" +item]
+    resources[type + "_" + item] += 1
+    resources["bugs"] -= upgradeCosts[type + "_" + item]
     if (item == "glasses") // Deterministically Apply Upgrade Effects
       resources["bugs_per_click"] *= upgradeMults[type + "_glasses"]
     else
@@ -161,27 +161,68 @@ function buyUpgrade(type,item){
 }
 
 function updateShop(shopType, itemType) {
-  shopElement = document.getElementById(shopType + '_shop')
-  shopElement.style.display = "none";
+  /*
+    Replaces Shop Upgrades with Higher Tiers
 
-  var nextType;
+    Parameters
+    ------------
+      itemType: String - The descriptive identifier applied to the upgrade
+      shopType: String - The type of upgrade (shoes, glasses)
+
+    Returns
+    ------------
+      void : null
+
+    Called by
+    ------------
+      buyUpgrade()
+  */
+
+  shopElement = document.getElementById(shopType + '_shop')
+  shopElement.style.display = "none"; // Hide the upgrade button
+
+  var nextType,toolTip;
   switch (itemType) {
     case 'old':
       nextType = 'new';
+      toolTip = `A new pair of ${shopType}`
       break;
     case 'new':
       nextType = 'designer';
+      toolTip = `A designer pair of ${shopType}`
       break;
     default:
-      nextType = 'obsolete';
+      nextType = 'obsolete'; // Obsolete has dummy .png references but will never display based on unlocks dictionary
+      toolTip = "Dummy Text"
+      break;
   }
+
+  // Replace the element with the new data
   shopElement.innerHTML = `<div class="shop_cost" id="${shopType}_shop_cost">Cost: <span id=cost_${shopType}>${upgradeCosts[nextType+"_"+shopType]}</span> Bugs</div>
-	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buyUpgrade('${nextType}','${shopType}')" style="background-image:url('Assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>`
+	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buyUpgrade('${nextType}','${shopType}')" style="background-image:url('Assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>
+    <span class="tooltiptext">${toolTip}</span>`
+
   if (unlocks[nextType + "_" + shopType])
-    unlocks[shopType] = unlocks[nextType + "_" + shopType];
+    unlocks[shopType] = unlocks[nextType + "_" + shopType]; // Update unlocks target
 }
 
 function eatBugs(num) {
+  /*
+    Increases the bugs resource
+
+    Parameters
+    ------------
+      num: Int - The number of bugs eaten
+
+    Returns
+    ------------
+      void : null
+
+    Called by
+    ------------
+      frogClicked()
+      window.setInterval(tickRate)
+  */
   resources["bugs"] += num * resources["normal_frog"]
   updateText()
 }
@@ -249,66 +290,38 @@ function frogClicked(bugAmt = 1) {
 
 function updateText(type = "") {
   frogsRegex = new RegExp('frog');
-  for (var key in unlocks) {
-    var unlocked = true
-    for (var criterion in unlocks[key]) {
-      unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
+  if (type != "init") {
+    for (var key in unlocks) {
+      var unlocked = true
+      for (var criterion in unlocks[key]) {
+        unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
+      }
+      if (unlocked && frogsRegex.test(key)) {
+        document.getElementById(key + '_wrapper').style.display = "block";
+        document.getElementById(key + '_shop').style.display = "block";
+      } else if (unlocked && (key == 'shoes' || key == 'glasses')) {
+        document.getElementById('accessories_label').style.display = "block"
+        element = document.getElementById(key + '_shop')
+        var obsolete = new RegExp('obsolete')
+        if (!obsolete.test(element.innerHTML))
+          element.style.display = "block"
+      }
     }
-    if (unlocked && frogsRegex.test(key)) {
-      document.getElementById(key + '_wrapper').style.display = "block";
-      document.getElementById(key + '_shop').style.display = "block";
-    } else if (unlocked && (key == 'shoes' || key == 'glasses')) {
-      element = document.getElementById(key + '_shop')
-      var obsolete = new RegExp('obsolete')
-      if (!obsolete.test(element.innerHTML))
-        element.style.display = "block"
+    if (type != "") {
+      document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
+      document.getElementById('cost_' + type).innerHTML = frogCosts[type + "_frog"]
+      console.log(type)
     }
+  } else {
+    document.getElementById('cost_tiny').innerHTML = frogCosts['tiny_frog'];
+    document.getElementById('cost_small').innerHTML = frogCosts['small_frog'];
+    document.getElementById('cost_medium').innerHTML = frogCosts['medium_frog'];
+    document.getElementById('cost_large').innerHTML = frogCosts['large_frog'];
+    document.getElementById('cost_giant').innerHTML = frogCosts['giant_frog'];
+    document.getElementById('cost_black_hole').innerHTML = frogCosts['black_hole_frog'];
   }
-
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = (resources['bugs_per_second'] * 5).toFixed(2);
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
-  if (type != "") {
-    document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
-    document.getElementById('cost_' + type).innerHTML = frogCosts[type + "_frog"]
-    console.log(type)
-  }
-}
-
-
-function readyDocument() {
-
-  // Spaghetti; to fix later.
-
-  /*
-	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = resources['bugs_per_second'].toFixed(2) * 5;
-  document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
-
-	var titles ["tiny", "small", "medium", "large", "giant", "black_hole"]
-
-	for (var key in titles) {
-		document.getElementById('num_' + key).innerHTML = resources[key + '_frog'];
-		document.getElementById('cost_' + key).innerHTML = frogCosts[key + '_frog'];
-	}
-	*/
-
-  document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = (resources['bugs_per_second'] * 5).toFixed(2);
-  document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
-
-  document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
-  document.getElementById('num_small').innerHTML = resources['small_frog'];
-  document.getElementById('num_medium').innerHTML = resources['medium_frog'];
-  document.getElementById('num_large').innerHTML = resources['large_frog'];
-  document.getElementById('num_giant').innerHTML = resources['giant_frog'];
-  document.getElementById('num_black_hole').innerHTML = resources['black_hole_frog'];
-
-  document.getElementById('cost_tiny').innerHTML = frogCosts['tiny_frog'];
-  document.getElementById('cost_small').innerHTML = frogCosts['small_frog'];
-  document.getElementById('cost_medium').innerHTML = frogCosts['medium_frog'];
-  document.getElementById('cost_large').innerHTML = frogCosts['large_frog'];
-  document.getElementById('cost_giant').innerHTML = frogCosts['giant_frog'];
-  document.getElementById('cost_black_hole').innerHTML = frogCosts['black_hole_frog'];
 
 }
