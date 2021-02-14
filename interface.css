@@ -95,7 +95,6 @@ svg {
   align-items: center;
   position: relative;
   top: 50%
-    /* padding-top:200px; */
 }
 
 #bug_counter {
@@ -331,8 +330,8 @@ svg {
 
 #big_frog {
   position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
 }
 
 .column {
@@ -360,9 +359,12 @@ svg {
   background-size: 48px 48px;
 }
 
+#go_window {
+  margin: 30px;
+}
+
 #final_bug_stats {
-  padding-left: 425px;
-  padding-right: 175px;
+  padding-left: 700px;
 }
 
 li {
