@@ -25,54 +25,54 @@ Section 2
     <div id="main">
       <div id="left_panel">
         <img id="logo" src="Assets/logo.png" alt="Froggy Clicker Logo">
+        <div id="frog_and_bug">
+          <div id="bug_counter">
+            <button id="bugs_logo" disabled="disabled" style="background-image:url('Assets/Bug.png')">Bugs</button>
+            <div class="counter_text">
+              Bugs Caught: <span id=num_bugs>0</span><br>
+            </div>
+            <div class="counter_text">
+              Bugs Per Second: <span id=num_bps>0</span><br>
+            </div>
+            <div class="counter_text">
+              Bugs Per Click: <span id=num_bpc>1</span><br>
+            </div>
 
-        <div id="bug_counter">
-          <button id="bugs_logo" disabled="disabled" style="background-image:url('Assets/Bug.png')">Bugs</button>
-          <div class="counter_text">
-            Bugs Caught: <span id=num_bugs>0</span><br>
           </div>
-          <div class="counter_text">
-            Bugs Per Second: <span id=num_bps>0</span><br>
-          </div>
-          <div class="counter_text">
-            Bugs Per Click: <span id=num_bpc>1</span><br>
-          </div>
-          <input id="main_frog" type="image" src="Assets/main_frog_lily.png" onClick="frogClicked(50000)">
-
+          <input id="main_frog" type="image" src="Assets/main_frog_lily.png" onClick="frogClicked()">
         </div>
-
       </div>
       <div id="right_panel">
 
         <div class="canvas_wrapper" id="tiny_frog_wrapper">
           <button class="show_tiny_frog" id="frogs_label" disabled="disabled" style="background-image:url('Assets/lilypad.png')">Frog Pond</button>
           <div class="show_tiny_frog" id="tiny_frog_label">Tiny Frogs: <span id=num_tiny>0</span></div>
-          <canvas id="tiny_frog_home" class="frog_canvas"></canvas>
+          <canvas id="tiny_frog_home" class="frog_canvas" height="200"></canvas>
         </div>
 
         <div class="canvas_wrapper" id="small_frog_wrapper">
           <div class="show_small_frog" id="small_frog_label">Small Frogs: <span id=num_small>0</span></div>
-          <canvas id="small_frog_home" class="frog_canvas"></canvas>
+          <canvas id="small_frog_home" class="frog_canvas" height="200"></canvas>
         </div>
 
         <div class="canvas_wrapper" id="medium_frog_wrapper">
           <div class="show_medium_frog" id="medium_frog_label">Medium Frogs: <span id=num_medium>0</span></div>
-          <canvas id="medium_frog_home" class="frog_canvas"></canvas>
+          <canvas id="medium_frog_home" class="frog_canvas" height="200"></canvas>
         </div>
 
         <div class="canvas_wrapper" id="large_frog_wrapper">
           <div class="show_large_frog" id="large_frog_label">Large Frogs: <span id=num_large>0</span></div>
-          <canvas id="large_frog_home" class="frog_canvas"></canvas>
+          <canvas id="large_frog_home" class="frog_canvas" height="200"></canvas>
         </div>
 
         <div class="canvas_wrapper" id="giant_frog_wrapper">
           <div class="show_giant_frog" id="giant_frog_label">Giant Frogs: <span id=num_giant>0</span></div>
-          <canvas id="giant_frog_home" class="frog_canvas"></canvas>
+          <canvas id="giant_frog_home" class="frog_canvas" height="200"></canvas>
         </div>
 
         <div class="canvas_wrapper" id="black_hole_frog_wrapper">
           <div class="show_black_hole_frog" id="black_hole_frog_label">Black Hole Frogs: <span id=num_black_hole>0</span></div>
-          <canvas id="black_hole_frog_home" class="frog_canvas"></canvas>
+          <canvas id="black_hole_frog_home" class="frog_canvas" height="200"></canvas>
         </div>
 
       </div>
@@ -122,20 +122,28 @@ Section 2
     </div>
 
     <div id="accessories">
-      <div class= "column">
+      <div class="column">
         <button class="show_tiny_frog" id="accessories_label" disabled="disabled" style="background-image:url('Assets/old_glasses.png')">Accessories</button>
         <div class="shop_wrapper accessory" id="glasses_shop">
           <div class="shop_cost" id="glasses_shop_cost">Cost: <span id=cost_glasses>300</span> Bugs</div>
-          <button class="shop_button"  id = "glasses_shop_button" type="button" onClick="buyUpgrade('old','glasses')" style="background-image:url('Assets/old_glasses.png')"> Buy Old Glasses</button>
-          <span class="tooltiptext">A giant frog with a giant appetite. Eats 80 bugs per second.</span>
+          <button class="shop_button" id="glasses_shop_button" type="button" onClick="buyUpgrade('old','glasses')" style="background-image:url('Assets/old_glasses.png')"> Buy Old Glasses</button>
+          <span class="tooltiptext">Old glasses that help your frogs see a little better. Multiplies bugs per click by 1.5.</span>
 
         </div>
 
         <div class="shop_wrapper accessory" id="shoes_shop">
           <div class="shop_cost" id="shoes_shop_cost">Cost: <span id=cost_shoes>300</span> Bugs</div>
-          <button class="shop_button"  id = "shoes_shop_button" type="button" onClick="buyUpgrade('old','shoes')" style="background-image:url('Assets/old_shoes.png')"> Buy Old Shoes</button>
-          <span class="tooltiptext">A giant frog with a giant appetite. Eats 80 bugs per second.</span>
+          <button class="shop_button" id="shoes_shop_button" type="button" onClick="buyUpgrade('old','shoes')" style="background-image:url('Assets/old_shoes.png')"> Buy Old Shoes</button>
+          <span class="tooltiptext">Old shoes that help your frogs jump a little higher. Multiplies bugs per second by 1.5.</span>
         </div>
+        <div class="shop_cost" id="purchased_label">Purchased: </div>
+        <div class = "purchased accessory" id ="purchased_glasses">
+
+        </div>
+        <div class = "purchased accessory" id ="purchased_shoes">
+
+        </div>
+
       </div>
     </div>
 
