@@ -36,12 +36,12 @@ var frogCosts = {
 }
 
 var frog_positions = {
-  "tiny_frog": [0,0],
-  "small_frog": [0,0],
-  "medium_frog": [0,0],
-  "large_frog": [0,0],
-  "giant_frog": [0,0],
-  "black_hole_frog": [0,0]
+  "tiny_frog": [0, 0],
+  "small_frog": [0, 0],
+  "medium_frog": [0, 0],
+  "large_frog": [0, 0],
+  "giant_frog": [0, 0],
+  "black_hole_frog": [0, 0]
 }
 
 //These values will stau the same and be used for calculation
@@ -80,7 +80,6 @@ var upgradeMults = {
   "new_shoes": 2,
   "designer_shoes": 2.5
 }
-
 
 var unlocks = {
   "tiny_frog": {
@@ -127,33 +126,37 @@ var unlocks = {
   }
 }
 
+function buyUpgrade(type,item){
+  /*
+    Applies Multiplier Effects for Upgrades
 
+    Parameters
+    ------------
+      type: String - The descriptive identifier applied to the upgrade
+      item: String - The type of upgrade (shoes, glasses)
 
-function buyglasses(type, num = 1) {
-  if (resources["bugs"] >= upgradeCosts[type + "_glasses"] * num) {
+    Returns
+    ------------
+      void : null
 
-    resources[type + "_glasses"] += num
-    resources["bugs"] -= num * upgradeCosts[type + "_glasses"]
-    resources["bugs_per_click"] *= upgradeMults[type + "_glasses"]
+    Called by
+    ------------
+      #glasses_shop_button
+      #shoes_shop_button
+  */
 
+  // Evaluate if resources are present to purchase upgrade
+  if (resources["bugs"] >= upgradeCosts[type + "_"+item]){
+
+    resources[type + "_"+item] += 1
+    resources["bugs"] -= upgradeCosts[type + "_" +item]
+    if (item == "glasses") // Deterministically Apply Upgrade Effects
+      resources["bugs_per_click"] *= upgradeMults[type + "_glasses"]
+    else
+      resources["bugs_per_second"] *= upgradeMults[type + "_shoes"]
 
     updateText()
-    updateShop('glasses', type)
-  }
-}
-
-function buyshoes(type, num = 1) {
-  if (resources["bugs"] >= upgradeCosts[type + "_shoes"] * num) {
-
-    resources[type + "_shoes"] += num
-    resources["bugs"] -= num * upgradeCosts[type + "_shoes"]
-    resources["bugs_per_second"] *= upgradeMults[type + "_shoes"]
-
-
-    updateText()
-    updateShop('shoes', type)
-
-
+    updateShop(item, type)
   }
 }
 
@@ -173,7 +176,7 @@ function updateShop(shopType, itemType) {
       nextType = 'obsolete';
   }
   shopElement.innerHTML = `<div class="shop_cost" id="${shopType}_shop_cost">Cost: <span id=cost_${shopType}>${upgradeCosts[nextType+"_"+shopType]}</span> Bugs</div>
-	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buy${shopType}('${nextType}')" style="background-image:url('Assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>`
+	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buyUpgrade('${nextType}','${shopType}')" style="background-image:url('Assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>`
   if (unlocks[nextType + "_" + shopType])
     unlocks[shopType] = unlocks[nextType + "_" + shopType];
 }
@@ -183,21 +186,21 @@ function eatBugs(num) {
   updateText()
 }
 
-function updateCanvas(type){
-  canvas = document.getElementById(type+"_frog_home")
+function updateCanvas(type) {
+  canvas = document.getElementById(type + "_frog_home")
   context = canvas.getContext("2d")
-  image = new Image(320,320)
+  image = new Image(320, 320)
   image.src = `Assets/${type}_frog.png`
   canvas.append(image)
-  positions = frog_positions[type+"_frog"]
-  context.drawImage(image,0,0,320,320,positions[0],positions[1],40,40)
+  positions = frog_positions[type + "_frog"]
+  context.drawImage(image, 0, 0, 320, 320, positions[0], positions[1], 40, 40)
   updatePositions(type)
 }
 
-function updatePositions(type){
-  positions = frog_positions[type+"_frog"]
-  positions[0] +=10
-  positions[1] +=30
+function updatePositions(type) {
+  positions = frog_positions[type + "_frog"]
+  positions[0] += 10
+  positions[1] += 30
 }
 
 function inviteFrog(type, num = 1) {
@@ -277,7 +280,7 @@ function readyDocument() {
 
   // Spaghetti; to fix later.
 
-	/*
+  /*
 	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = resources['bugs_per_second'].toFixed(2) * 5;
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
