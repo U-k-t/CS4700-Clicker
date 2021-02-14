@@ -90,7 +90,6 @@ svg {
   left: 0;
 }
 
-
 #frog_and_bug {
   display: grid;
   align-items: center;
@@ -148,13 +147,7 @@ svg {
   grid-area: frogs-label;
 }
 
-
-
-
 /* Left Column Styling */
-
-
-
 #bugs_logo {
   background: #FFFFFF00 no-repeat left;
   border-style: none none solid none;
@@ -169,12 +162,12 @@ svg {
   background-size: 48px 48px;
 }
 
-.counter_text{
+.counter_text {
   padding-bottom: 15px;
 }
 
 #shop_label {
-  display:none;
+  display: none;
   background: #FFFFFF00 no-repeat left;
   border-style: none none solid none;
   border-radius: 0px;
@@ -190,18 +183,19 @@ svg {
   grid-area: shop-label;
 }
 
-.shop_wrapper{
-  display:none;
+.shop_wrapper {
+  display: none;
   position: relative;
 }
 
-.ribbit{
+.ribbit {
   width: 220px;
   height: 220px;
-  display:block;
+  display: block;
   padding: 5px;
-  padding-left:30px;
+  padding-left: 30px;
 }
+
 .shop_wrapper .tooltiptext {
   visibility: hidden;
   width: 200px;
@@ -233,7 +227,7 @@ svg {
   visibility: visible;
 }
 
-.shop_button{
+.shop_button {
   background: #9B9EC3 no-repeat left;
   background-size: 64px 64px;
   padding-left: 60px;
@@ -251,7 +245,6 @@ svg {
 .shop_cost {
   margin-left: 30px;
 }
-
 
 #right_panel {
   display: grid;
@@ -283,7 +276,8 @@ svg {
   grid-area: medium-frog;
 }
 
-#large_frog_wrapper {grid-area: large-frog;
+#large_frog_wrapper {
+  grid-area: large-frog;
 }
 
 #giant_frog_wrapper {
@@ -323,12 +317,12 @@ svg {
   background: #FFFFFF00 no-repeat left;
   border-style: none none solid none;
   border-radius: 0px;
-  display:none;
+  display: none;
   color: #222B09;
   padding-top: 0px;
   padding-left: 50px;
   padding-right: 40px;
-  padding-bottom:10px;
+  padding-bottom: 10px;
   margin-left: 30px;
   margin-bottom: 10px;
   font-size: 24px;
@@ -371,9 +365,10 @@ svg {
   padding-right: 175px;
 }
 
-li{
+li {
   margin: 20px 0;
 }
+
 #frog_text {
   font-size: 24px;
 }
