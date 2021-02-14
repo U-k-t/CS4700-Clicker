@@ -25,32 +25,42 @@ var resources = {
   "black_hole_frog": 0
 }
 
-
+//These values will change and be displayed
 var frogCosts = {
-  "tiny_frog": 25,
+  "tiny_frog": 15,
   "small_frog": 100,
   "medium_frog": 500,
-  "large_frog": 1500,
-  "giant_frog": 4000,
-  "black_hole_frog": 10000
+  "large_frog": 3000,
+  "giant_frog": 10000,
+  "black_hole_frog": 40000
+}
+
+//These values will stau the same and be used for calculation
+var permaCosts = {
+  "tiny_frog": 15,
+  "small_frog": 100,
+  "medium_frog": 500,
+  "large_frog": 3000,
+  "giant_frog": 10000,
+  "black_hole_frog": 40000
 }
 
 var bugsPerSecond = {
   "tiny_frog": 0.04,
   "small_frog": 0.2,
-  "medium_frog": 2,
-  "large_frog": 5,
-  "giant_frog": 20,
-  "black_hole_frog": 100
+  "medium_frog": 1.6,
+  "large_frog": 4,
+  "giant_frog": 16,
+  "black_hole_frog": 40
 }
 
 var upgradeCosts = {
-  "old_glasses": 300,
-  "new_glasses": 750,
-  "designer_glasses": 2000,
-  "old_shoes": 300,
-  "new_shoes": 750,
-  "designer_shoes": 2000
+  "old_glasses": 200,
+  "new_glasses": 500,
+  "designer_glasses": 2500,
+  "old_shoes": 200,
+  "new_shoes": 500,
+  "designer_shoes": 2500
 }
 
 var upgradeMults = {
@@ -65,7 +75,7 @@ var upgradeMults = {
 
 var unlocks = {
   "tiny_frog": {
-    "bugs": 25
+    "bugs": 15
   },
   "small_frog": {
     "bugs": 100
@@ -74,31 +84,31 @@ var unlocks = {
     "bugs": 500
   },
   "large_frog": {
-    "bugs": 1500
+    "bugs": 3000
   },
   "giant_frog": {
-    "bugs": 4000
-  },
-  "black_hole_frog": {
     "bugs": 10000
   },
+  "black_hole_frog": {
+    "bugs": 40000
+  },
   "old_glasses": {
-    "bugs": 300
+    "bugs": 200
   },
   "new_glasses": {
-    "bugs": 750
+    "bugs": 500
   },
   "designer_glasses": {
-    "bugs": 2000
+    "bugs": 2500
   },
   "old_shoes": {
-    "bugs": 300
+    "bugs": 200
   },
   "new_shoes": {
-    "bugs": 750
+    "bugs": 500
   },
   "designer_shoes": {
-    "bugs": 2000
+    "bugs": 2500
   },
   "shoes": {
     "bugs": 300
@@ -171,7 +181,7 @@ function inviteFrog(type, num = 1) {
     resources[type + "_frog"] += num
     resources["bugs"] -= num * frogCosts[type + "_frog"]
 
-    frogCosts[type + "_frog"] = Math.round(num * frogCosts[type + "_frog"] * (Math.pow(1.1, resources[type + "_frog"])))
+    frogCosts[type + "_frog"] = Math.round(num * permaCosts[type + "_frog"] * Math.pow(1.07, resources[type + "_frog"]))
     resources["bugs_per_second"] += bugsPerSecond[type + "_frog"]
 
     updateText(type)
@@ -228,7 +238,7 @@ function updateText(type = "") {
   }
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = (resources['bugs_per_second']*5).toFixed(2);
+  document.getElementById('num_bps').innerHTML = (resources['bugs_per_second'] * 5).toFixed(2);
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
   if (type != "") {
     document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
@@ -242,8 +252,21 @@ function readyDocument() {
 
   // Spaghetti; to fix later.
 
-  document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
+	/*
+	document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
   document.getElementById('num_bps').innerHTML = resources['bugs_per_second'].toFixed(2) * 5;
+  document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
+
+	var titles ["tiny", "small", "medium", "large", "giant", "black_hole"]
+
+	for (var key in titles) {
+		document.getElementById('num_' + key).innerHTML = resources[key + '_frog'];
+		document.getElementById('cost_' + key).innerHTML = frogCosts[key + '_frog'];
+	}
+	*/
+
+  document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
+  document.getElementById('num_bps').innerHTML = (resources['bugs_per_second'] * 5).toFixed(2);
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
 
   document.getElementById('num_tiny').innerHTML = resources['tiny_frog'];
@@ -259,4 +282,5 @@ function readyDocument() {
   document.getElementById('cost_large').innerHTML = frogCosts['large_frog'];
   document.getElementById('cost_giant').innerHTML = frogCosts['giant_frog'];
   document.getElementById('cost_black_hole').innerHTML = frogCosts['black_hole_frog'];
+
 }
