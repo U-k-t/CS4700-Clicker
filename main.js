@@ -35,6 +35,15 @@ var frogCosts = {
   "black_hole_frog": 40000
 }
 
+var frog_positions = {
+  "tiny_frog": [0,0],
+  "small_frog": [0,0],
+  "medium_frog": [0,0],
+  "large_frog": [0,0],
+  "giant_frog": [0,0],
+  "black_hole_frog": [0,0]
+}
+
 //These values will stau the same and be used for calculation
 var permaCosts = {
   "tiny_frog": 15,
@@ -174,6 +183,22 @@ function eatBugs(num) {
   updateText()
 }
 
+function updateCanvas(type){
+  canvas = document.getElementById(type+"_frog_home")
+  context = canvas.getContext("2d")
+  image = new Image(320,320)
+  image.src = `Assets/${type}_frog.png`
+  canvas.append(image)
+  positions = frog_positions[type+"_frog"]
+  context.drawImage(image,0,0,320,320,positions[0],positions[1],40,40)
+  updatePositions(type)
+}
+
+function updatePositions(type){
+  positions = frog_positions[type+"_frog"]
+  positions[0] +=10
+  positions[1] +=30
+}
 
 function inviteFrog(type, num = 1) {
   if (resources["bugs"] >= frogCosts[type + "_frog"] * num) {
@@ -183,7 +208,7 @@ function inviteFrog(type, num = 1) {
 
     frogCosts[type + "_frog"] = Math.round(num * permaCosts[type + "_frog"] * Math.pow(1.07, resources[type + "_frog"]))
     resources["bugs_per_second"] += bugsPerSecond[type + "_frog"]
-
+    updateCanvas(type)
     updateText(type)
 
     if (type == "black_hole") {
