@@ -119,7 +119,7 @@ function buyglasses(type, num = 1) {
 
 
     updateText()
-		updateShop('glasses', type)
+    updateShop('glasses', type)
   }
 }
 
@@ -132,7 +132,7 @@ function buyshoes(type, num = 1) {
 
 
     updateText()
-		updateShop('shoes', type)
+    updateShop('shoes', type)
 
 
   }
@@ -154,9 +154,9 @@ function updateShop(shopType, itemType) {
       nextType = 'obsolete';
   }
   shopElement.innerHTML = `<div class="shop_cost" id="${shopType}_shop_cost">Cost: <span id=cost_${shopType}>${upgradeCosts[nextType+"_"+shopType]}</span> Bugs</div>
-	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buy${shopType}('${nextType}')" style="background-image:url('assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>`
-	if(unlocks[nextType+"_"+shopType])
-		unlocks[shopType] = unlocks[nextType+"_"+shopType];
+	<button class="shop_button"  id = "${shopType}_shop_button" type="button" onClick="buy${shopType}('${nextType}')" style="background-image:url('Assets/${nextType}_${shopType}.png')"> Buy ${nextType} ${shopType}</button>`
+  if (unlocks[nextType + "_" + shopType])
+    unlocks[shopType] = unlocks[nextType + "_" + shopType];
 }
 
 function eatBugs(num) {
@@ -175,17 +175,17 @@ function inviteFrog(type, num = 1) {
     resources["bugs_per_second"] += bugsPerSecond[type + "_frog"]
 
     updateText(type)
-  }
-  if (type == "black_hole") {
-    uneaten = document.getElementsByClassName('uneaten');
-    for (index in uneaten) {
-      ele = uneaten[index]
-      if (ele.parentElement) {
-        ele.parentElement.innerHTML = '<image id = "ribbit" src ="Assets/black_hole_frog.png"></image>'
+
+    if (type == "black_hole") {
+      uneaten = document.getElementsByClassName('uneaten');
+      for (index in uneaten) {
+        ele = uneaten[index]
+        if (ele.parentElement) {
+          ele.parentElement.innerHTML = '<image class = "ribbit" src ="Assets/black_hole_frog.png"></image>'
+        }
+
+        break;
       }
-
-      break;
-
     }
   }
 }
@@ -219,17 +219,16 @@ function updateText(type = "") {
     if (unlocked && frogsRegex.test(key)) {
       document.getElementById(key + '_wrapper').style.display = "block";
       document.getElementById(key + '_shop').style.display = "block";
+    } else if (unlocked && (key == 'shoes' || key == 'glasses')) {
+      element = document.getElementById(key + '_shop')
+      var obsolete = new RegExp('obsolete')
+      if (!obsolete.test(element.innerHTML))
+        element.style.display = "block"
     }
-		else if (unlocked && (key == 'shoes' || key=='glasses')) {
-			element = document.getElementById(key + '_shop')
-			var obsolete = new RegExp('obsolete')
-			if (!obsolete.test(element.innerHTML))
-				element.style.display = "block"
-		}
   }
 
   document.getElementById('num_bugs').innerHTML = Math.floor(resources['bugs']);
-  document.getElementById('num_bps').innerHTML = resources['bugs_per_second'].toFixed(2) * 5;
+  document.getElementById('num_bps').innerHTML = (resources['bugs_per_second']*5).toFixed(2);
   document.getElementById('num_bpc').innerHTML = resources['bugs_per_click'].toFixed(2);
   if (type != "") {
     document.getElementById('num_' + type).innerHTML = resources[type + "_frog"]
