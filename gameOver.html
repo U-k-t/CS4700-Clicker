@@ -22,7 +22,68 @@ Section 2
 <body>
 
   <div id="go_window">
-    <img src="Assets/black_hole_frog.png"></img>
+
+    <p id="frog_text">I got a little carried away and ate the universe again, my bad.
+    <br>I guess that means the game is over...
+    <br>On the bright side, here's a summary of all the tasty stuff you fed me!</p>
+
+    <div class="row">
+
+      <div class="column">
+        <img id="big_frog" src="Assets/black_hole_frog.png" alt="Black Hole Frog Image"></img>
+      </div>
+
+      <div class="column" id="final_bug_stats">
+        <button id="go_label" disabled="disabled" style="background-image:url('Assets/Bug.png')">Bugs</button>
+        <li>Total number of Bugs consumed:
+          <span id=num_total_bugs>0</span><br>
+        </li>
+
+        <li>Total Bugs Per Second:
+          <span id=num_total_bps>0</span><br>
+        </li>
+
+        <li>Total Bugs Per Click:
+          <span id=num_total_bpc>0</span><br>
+        </li>
+      </div>
+
+      <div class="column" id="final_frog_stats">
+        <button id="go_label" disabled="disabled" style="background-image:url('Assets/main_frog.png')">Frogs</button>
+
+        <li>
+        Tiny Frogs invited:
+          <span id=num_total_tiny_frog>0</span><br>
+        </li>
+
+        <li>
+        Small Frogs invited:
+          <span id=num_total_small_frog>0</span><br>
+        </li>
+
+        <li>
+        Medium Frogs invited:
+          <span id=num_total_medium_frog>0</span><br>
+        </li>
+
+        <li>
+        Large Frogs invited:
+          <span id=num_total_large_frog>0</span><br>
+        </li>
+
+        <li>
+        Giant Frogs invited:
+          <span id=num_total_giant_frog>0</span><br>
+        </li>
+
+        <li>
+        Black Hole Frogs invited:
+          <span id=num_total_black_hole_frog>0</span><br>
+        </li>
+      </div>
+
+    </div>
+
   </div>
 
 </body>
