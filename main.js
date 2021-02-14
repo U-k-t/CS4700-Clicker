@@ -15,7 +15,7 @@ var tickRate = 200
 
 var resources = {
   "bugs": 0,
-  "total_bugs":0,
+  "total_bugs": 0,
   "bugs_per_second": 0,
   "bugs_per_click": 1,
   "normal_frog": 1,
@@ -365,16 +365,16 @@ function yummyYummy() {
   if (uneaten.length == 0) {
     window.clearInterval(bhInterval);
     window.clearInterval(tickCounter);
-    localStorage.setItem('total',Math.floor(resources['total_bugs']))
-    localStorage.setItem('bps',(resources['bugs_per_second'] * 5).toFixed(2))
-    localStorage.setItem('bpc',resources['bugs_per_click'].toFixed(2))
-    localStorage.setItem('tiny',resources["tiny_frog"])
-    localStorage.setItem('small',resources["small_frog"])
-    localStorage.setItem('med',resources["medium_frog"])
-    localStorage.setItem('large',resources["large_frog"])
-    localStorage.setItem('giant',resources["giant_frog"])
-    localStorage.setItem('bh',resources["black_hole_frog"])
-    localStorage.setItem('uninvited',6-resources["black_hole_frog"])
+    localStorage.setItem('total', Math.floor(resources['total_bugs']))
+    localStorage.setItem('bps', (resources['bugs_per_second'] * 5).toFixed(2))
+    localStorage.setItem('bpc', resources['bugs_per_click'].toFixed(2))
+    localStorage.setItem('tiny', resources["tiny_frog"])
+    localStorage.setItem('small', resources["small_frog"])
+    localStorage.setItem('med', resources["medium_frog"])
+    localStorage.setItem('large', resources["large_frog"])
+    localStorage.setItem('giant', resources["giant_frog"])
+    localStorage.setItem('bh', resources["black_hole_frog"])
+    localStorage.setItem('uninvited', 6 - resources["black_hole_frog"])
     window.location.replace('gameOver.html')
   }
   for (index in uneaten) {
@@ -457,7 +457,7 @@ String.prototype.toTitleCase = function() {
 };
 
 
-function postStats(){
+function postStats() {
   document.getElementById('num_total_bugs').innerHTML = localStorage.getItem('total')
   document.getElementById('num_total_bps').innerHTML = localStorage.getItem('bps')
   document.getElementById('num_total_bpc').innerHTML = localStorage.getItem('bpc')
@@ -467,8 +467,8 @@ function postStats(){
   document.getElementById('num_total_large_frog').innerHTML = localStorage.getItem('large')
   document.getElementById('num_total_giant_frog').innerHTML = localStorage.getItem('giant')
   document.getElementById('num_total_black_hole_frog').innerHTML = localStorage.getItem('bh')
-  if(localStorage.getItem('uninvited')>0)
-    document.getElementById('final_bug_stats').innerHTML+=`<li>
+  if (localStorage.getItem('uninvited') > 0)
+    document.getElementById('final_bug_stats').innerHTML += `<li>
       Uninvited Black Hole Frogs:
       <span >${localStorage.getItem('uninvited')}</span><br>
       </li>`
