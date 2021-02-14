@@ -152,7 +152,7 @@ svg {
 }
 .shop_wrapper .tooltiptext {
   visibility: hidden;
-  width: 220px;
+  width: 200px;
   top: 100%;
   left: 50%;
   margin-left: -110px;

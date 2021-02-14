@@ -36,15 +36,6 @@ var frogCosts = {
   "black_hole_frog": 40000
 }
 
-var frog_positions = {
-  "tiny_frog": [0, 0],
-  "small_frog": [0, 0],
-  "medium_frog": [0, 0],
-  "large_frog": [0, 0],
-  "giant_frog": [0, 0],
-  "black_hole_frog": [0, 0]
-}
-
 //These values will stau the same and be used for calculation
 var permaCosts = {
   "tiny_frog": 15,
@@ -53,6 +44,15 @@ var permaCosts = {
   "large_frog": 3000,
   "giant_frog": 10000,
   "black_hole_frog": 40000
+}
+
+var frog_positions = {
+  "tiny_frog": [0, 0],
+  "small_frog": [0, 0],
+  "medium_frog": [0, 0],
+  "large_frog": [0, 0],
+  "giant_frog": [0, 0],
+  "black_hole_frog": [0, 0]
 }
 
 var bugsPerSecond = {
@@ -186,11 +186,11 @@ function updateShop(shopType, itemType) {
   switch (itemType) {
     case 'old':
       nextType = 'new';
-      toolTip = `A new pair of ${shopType}`
+      toolTip = (shopType == 'shoes')?'New shoes that help your frogs jump much higher. Multiplies bugs per second by 2.':'New glasses that help your frogs see much better. Multiplies bugs per click by 2.'
       break;
     case 'new':
       nextType = 'designer';
-      toolTip = `A designer pair of ${shopType}`
+      toolTip = (shopType == 'shoes')?'Designer shoes that help your frogs jump a lot higher in style. Multiplies bugs per second by 2.5.':'New glasses that help your frogs see a lot better in style. Multiplies bugs per click by 2.5.'
       break;
     default:
       nextType = 'obsolete'; // Obsolete has dummy .png references but will never display based on unlocks dictionary
@@ -224,28 +224,87 @@ function eatBugs(num) {
       frogClicked()
       window.setInterval(tickRate)
   */
+	//Eats number of bugs based on bugs per click value
   resources["bugs"] += num * resources["normal_frog"] * resources["bugs_per_click"]
   updateText()
 }
 
-function updateCanvas(type) {
-  canvas = document.getElementById(type + "_frog_home")
+function updateCanvas(type){
+	/*
+		Adds frog image to respective canvas
+
+		Parameters
+		------------
+			type: String - The descriptive identifier applied to the frog
+
+		Returns
+		------------
+			void : null
+
+		Called by
+		------------
+			inviteFrog()
+	*/
+  canvas = document.getElementById(type+"_frog_home")
   context = canvas.getContext("2d")
-  image = new Image(320, 320)
+  image = new Image(320,320)
+
+	//Loads image properly before displaying
+  image.onload = function() {
+      canvas.append(image)
+    positions = frog_positions[type+"_frog"]
+    context.drawImage(image,0,0,320,320,positions[0],positions[1],32,32)
+		updatePositions(type)
+  }
   image.src = `Assets/${type}_frog.png`
-  canvas.append(image)
-  positions = frog_positions[type + "_frog"]
-  context.drawImage(image, 0, 0, 320, 320, positions[0], positions[1], 40, 40)
-  updatePositions(type)
 }
 
-function updatePositions(type) {
-  positions = frog_positions[type + "_frog"]
-  positions[0] += 10
-  positions[1] += 30
+function updatePositions(type){
+	/*
+		Assigns new position for each frog added
+
+		Parameters
+		------------
+			type: String - The descriptive identifier applied to the frog
+
+		Returns
+		------------
+			void : null
+
+		Called by
+		------------
+			updateCanvas()
+	*/
+  positions = frog_positions[type+"_frog"]
+		//Starts new row after every 5th frog added
+    if (resources[type + "_frog"] % 5 == 0) {
+      positions[0] +=10
+      positions[1] -=120
+    }
+    else {
+      positions[0] +=10
+      positions[1] +=30
+    }
 }
 
 function inviteFrog(type, num = 1) {
+	/*
+		Increases frog resources
+
+		Parameters
+		------------
+			type: String - The descriptive identifier applied to the frog
+			num: Int - The number of frogs purchased
+
+		Returns
+		------------
+			void : null
+
+		Called by
+		------------
+			#shop_button
+	*/
+	//Checks to see if new frog can be afforded
   if (resources["bugs"] >= frogCosts[type + "_frog"] * num) {
 
     resources[type + "_frog"] += num
@@ -256,6 +315,7 @@ function inviteFrog(type, num = 1) {
     updateCanvas(type)
     updateText(type)
 
+		//Adds black hole frog takeover functionality
     if (type == "black_hole") {
       startDestruction();
     }
@@ -269,6 +329,21 @@ function startDestruction() {
 }
 
 function frogClicked(bugAmt = 1) {
+	/*
+		Increases frog resources
+
+		Parameters
+		------------
+			bugAmt: Int - The number of bugs to be eaten
+
+		Returns
+		------------
+			void : null
+
+		Called by
+		------------
+			#main_frog
+	*/
   const gifTest = new RegExp('.gif');
   const frogButton = document.getElementById('main_frog');
   if (!gifTest.test(frogButton.src)) {
@@ -278,7 +353,6 @@ function frogClicked(bugAmt = 1) {
     }, 500)
   }
   eatBugs(bugAmt);
-
 }
 
 
@@ -302,6 +376,24 @@ function yummyYummy() {
 }
 
 function updateText(type = "") {
+	/*
+		Updates resource values
+
+		Parameters
+		------------
+			type: String - The descriptive identifier applied to the frog
+
+		Returns
+		------------
+			void : null
+
+		Called by
+		------------
+			buyUpgrade()
+			eatBugs()
+			inviteFrog()
+			window.setInterval
+	*/
   frogsRegex = new RegExp('frog');
   if (type != "init") {
     for (var key in unlocks) {
