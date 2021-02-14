@@ -122,6 +122,7 @@ svg {
 }
 
 #shop_label {
+  display:none;
   background: #FFFFFF00 no-repeat left;
   border-style: none none solid none;
   border-radius: 0px;
@@ -142,6 +143,13 @@ svg {
   position: relative;
 }
 
+.ribbit{
+  width: 220px;
+  height: 220px;
+  display:block;
+  padding: 5px;
+  padding-left:30px;
+}
 .shop_wrapper .tooltiptext {
   visibility: hidden;
   width: 220px;

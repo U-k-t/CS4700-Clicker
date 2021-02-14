@@ -9,6 +9,7 @@ Selena Aungst
 seaungst@cpp.edu
 Section 2
 */
+var bhInterval, tickCounter;
 
 var tickRate = 200
 
@@ -181,7 +182,7 @@ function updateShop(shopType, itemType) {
   shopElement = document.getElementById(shopType + '_shop')
   shopElement.style.display = "none"; // Hide the upgrade button
 
-  var nextType,toolTip;
+  var nextType, toolTip;
   switch (itemType) {
     case 'old':
       nextType = 'new';
@@ -223,7 +224,7 @@ function eatBugs(num) {
       frogClicked()
       window.setInterval(tickRate)
   */
-  resources["bugs"] += num * resources["normal_frog"]
+  resources["bugs"] += num * resources["normal_frog"] * resources["bugs_per_click"]
   updateText()
 }
 
@@ -256,23 +257,16 @@ function inviteFrog(type, num = 1) {
     updateText(type)
 
     if (type == "black_hole") {
-      uneaten = document.getElementsByClassName('uneaten');
-      for (index in uneaten) {
-        ele = uneaten[index]
-        if (ele.parentElement) {
-          ele.parentElement.innerHTML = '<image class = "ribbit" src ="Assets/black_hole_frog.png"></image>'
-        }
-
-        break;
-      }
+      startDestruction();
     }
   }
 }
 
-window.setInterval(function() {
-  eatBugs(resources["bugs_per_second"])
-}, tickRate);
-
+function startDestruction() {
+  bhInterval = window.setInterval(function() {
+    yummyYummy();
+  }, 10000)
+}
 
 function frogClicked(bugAmt = 1) {
   const gifTest = new RegExp('.gif');
@@ -288,6 +282,25 @@ function frogClicked(bugAmt = 1) {
 }
 
 
+function yummyYummy() {
+  console.log("yummy yummy")
+  uneaten = document.getElementsByClassName('uneaten');
+  if (uneaten.length == 0) {
+    window.clearInterval(bhInterval);
+    window.clearInterval(tickCounter);
+    window.location.replace('gameOver.html')
+  }
+  for (index in uneaten) {
+    ele = uneaten[index]
+    if (ele.parentElement) {
+      ele.parentElement.innerHTML = '<image class = "ribbit" src ="Assets/black_hole_frog.png"></image>'
+    }
+
+    break;
+  }
+
+}
+
 function updateText(type = "") {
   frogsRegex = new RegExp('frog');
   if (type != "init") {
@@ -297,6 +310,7 @@ function updateText(type = "") {
         unlocked = unlocked && resources[criterion] >= unlocks[key][criterion]
       }
       if (unlocked && frogsRegex.test(key)) {
+        document.getElementById('shop_label').style.display = "block"
         document.getElementById(key + '_wrapper').style.display = "block";
         document.getElementById(key + '_shop').style.display = "block";
       } else if (unlocked && (key == 'shoes' || key == 'glasses')) {
@@ -313,6 +327,9 @@ function updateText(type = "") {
       console.log(type)
     }
   } else {
+    tickCounter = window.setInterval(function() {
+      eatBugs(resources["bugs_per_second"])
+    }, tickRate);
     document.getElementById('cost_tiny').innerHTML = frogCosts['tiny_frog'];
     document.getElementById('cost_small').innerHTML = frogCosts['small_frog'];
     document.getElementById('cost_medium').innerHTML = frogCosts['medium_frog'];

@@ -37,7 +37,7 @@ Section 2
           <div class="counter_text">
             Bugs Per Click: <span id=num_bpc>1</span><br>
           </div>
-          <input id="main_frog" type="image" src="Assets/main_frog_lily.png" onClick="frogClicked(500)">
+          <input id="main_frog" type="image" src="Assets/main_frog_lily.png" onClick="frogClicked(50000)">
 
         </div>
 
@@ -81,9 +81,8 @@ Section 2
 
     <div id="shop">
       <div class="column">
-
+        <button class="show_tiny_frog" id="shop_label" disabled="disabled" style="background-image:url('Assets/main_frog.png')">Frogs</button>
         <div class="shop_wrapper" id="tiny_frog_shop">
-          <button class="show_tiny_frog" id="shop_label" disabled="disabled" style="background-image:url('Assets/main_frog.png')">Frogs</button>
           <div class="shop_cost uneaten" id="tiny_frog_cost">Invitation Fee: <span id=cost_tiny>0</span> Bugs</div>
           <span class="tooltiptext">A tiny frog with a tiny appetite. Eats 0.2 bugs per second.</span>
           <button class="shop_button" type="button" onClick="inviteFrog('tiny')" style="background-image:url('Assets/tiny_frog.png')"> Invite Tiny Frog</button>
