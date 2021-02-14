@@ -12,7 +12,6 @@ Section 2
 html {
   background: url('Assets/frog_pond.png') no-repeat center center fixed;
   font-family: verdana;
-  /* background-size:100% 100%; */
 }
 
 body {
@@ -53,11 +52,6 @@ svg {
   width: 100%;
 }
 
-
-/* .column {
-  float: left;
-  width: 50%;
-} */
 #window {
   display: grid;
   grid-template-areas: "main shop accessories";
@@ -301,4 +295,369 @@ svg {
   margin-bottom: 10px;
   font-size: 24px;
   background-size: 48px 48px;
+}
+
+#big_frog {
+  position: relative;
+  width: 480px;
+  height: 480px;
+}
+
+#frog_text {
+  position: relative;
+  font-size: 24px;
+}
+
+#go_window {
+  margin-left: 30px;
+}
+
+.go_column {
+  float: left;
+  width: 33%;
+  padding: 10px;
+  padding-left: 30px;
+}
+
+.go_row:after {
+  content: "";
+  display: table;
+  clear: both;
+  padding-bottom: 20px;
+}
+/*
+Jacob Rothman
+013383526
+jrothman@cpp.edu
+Section 2
+Selena Aungst
+013276146
+seaungst@cpp.edu
+Section 2
+*/
+
+html {
+  background: url('Assets/frog_pond.png') no-repeat center center fixed;
+  font-family: verdana;
+}
+
+body {
+  color: #222B09;
+  font-family: Verdana, sans-serif;
+
+}
+
+button {
+  background-color: #9B9EC3;
+  border-color: #3139A2;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3139A2;
+  padding: 15px 32px;
+  margin: 32px;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #6971D0;
+  border-color: #3139A2;
+  border-style: outset;
+  border-radius: 5px;
+  color: #AFB2D7;
+}
+
+button:active {
+  background-color: #3139A2;
+  color: #AFB2D7;
+}
+
+svg {
+  width: 100%;
+}
+
+#window {
+  display: grid;
+  grid-template-areas: "main shop accessories";
+  grid-template-columns: 3fr 1fr;
+}
+
+#main {
+  display: grid;
+  grid-area: main;
+  grid-template-areas: "left right";
+  grid-template-columns: 1.5fr 3fr;
+}
+
+
+
+/* Left Column Styling */
+
+#left_panel {
+  display: grid;
+  grid-area: left;
+  margin-left: 15px;
+}
+
+#logo {
+  margin-bottom: 15px;
+  width: 215px;
+  height: 89px;
+}
+
+#bugs_logo {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 100px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
+}
+
+#bug_counter {
+  display:grid;
+  height: 200px;
+  width: 300px;
+  padding: 20px;
+  position:absolute;
+  top: 25%;
+  justify-items:left;
+}
+.counter_text{
+  padding-bottom: 15px;
+}
+#main_frog {
+  height: 320px;
+  width: 320px;
+  outline: none;
+  position: relative;
+  top: 25%;
+}
+
+#shop_label {
+  display:none;
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 100px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
+  grid-area: shop-label;
+}
+
+.shop_wrapper{
+  display:none;
+  position: relative;
+}
+
+.ribbit{
+  width: 220px;
+  height: 220px;
+  display:block;
+  padding: 5px;
+  padding-left:30px;
+}
+.shop_wrapper .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  top: 100%;
+  left: 50%;
+  margin-left: -110px;
+  background-color: #D9BCE2;
+  color: #794E85;
+  text-align: center;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.shop_wrapper .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #D9BCE2 transparent;
+}
+
+.shop_wrapper:hover .tooltiptext {
+  visibility: visible;
+}
+
+.shop_button{
+  background: #9B9EC3 no-repeat left;
+  background-size: 64px 64px;
+  padding-left: 60px;
+  outline: none;
+}
+
+.shop_button:hover {
+  background-image: #6971D0;
+}
+
+.shop_button:hover {
+  background-image: #6971D0;
+}
+
+.shop_button:active {
+  background-image: #3139A2;
+}
+
+.shop_cost {
+  margin-left: 30px;
+}
+
+
+#right_panel {
+  display: grid;
+  grid-area: right;
+  grid-row-gap: 10px;
+  grid-template-areas:
+    "frogs-label"
+    "tiny-frog"
+    "small-frog"
+    "medium-frog"
+    "large-frog"
+    "giant-frog"
+    "bh-frog";
+}
+
+#frogs_label {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-left: 50px;
+  padding-right: 30px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
+  grid-area: frogs-label;
+}
+
+.canvas_wrapper {
+  display: none;
+}
+
+#tiny_frog_wrapper {
+  grid-area: tiny-frog;
+}
+
+#small_frog_wrapper {
+  grid-area: small-frog;
+}
+
+#medium_frog_wrapper {
+  grid-area: medium-frog;
+}
+
+#large_frog_wrapper {grid-area: large-frog;
+}
+
+#giant_frog_wrapper {
+  grid-area: giant-frog;
+}
+
+#black_hole_frog_wrapper {
+  grid-area: bh-frog;
+}
+
+.frog_canvas {
+  width: 100%;
+  height: 200px;
+  background-image: url('Assets/frog_background_seamless_small.png');
+  background-repeat: repeat-x;
+  border-style: solid;
+  border-color: #222B09;
+  border-width: 2px;
+  margin-bottom: 10px;
+}
+
+#shop {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-area: shop;
+  justify-items: end;
+}
+
+#accessories {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-area: accessories;
+  justify-items: end;
+}
+
+#accessories_label {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  display:none;
+  color: #222B09;
+  padding-top: 0px;
+  padding-left: 50px;
+  padding-right: 40px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  background-size: 48px 48px;
+}
+
+#big_frog {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+}
+
+.column {
+  float: left;
+  width: 28%;
+  font-size: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#go_label {
+  background: #FFFFFF00 no-repeat left;
+  border-style: none none solid none;
+  border-radius: 0px;
+  color: #222B09;
+  padding-left: 60px;
+  padding-right: 100px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  background-size: 48px 48px;
+}
+
+#final_bug_stats {
+  padding-left: 425px;
+  padding-right: 175px;
+}
+
+li{
+  margin: 20px 0;
 }
