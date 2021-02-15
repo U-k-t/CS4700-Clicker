@@ -9,13 +9,13 @@ seaungst@cpp.edu
 Section 2
 */
 html {
-  background: url('Assets/frog_pond.png') no-repeat center center fixed;
+  background: url('Assets/frog_pond_seamless.png') no-repeat center center fixed;
   font-family: verdana;
 }
 
 @media screen and (min-width:2740px) {
   html {
-    background: url('Assets/frog_pond.png') center center fixed;
+    background: url('Assets/frog_pond_seamless.png') center center fixed;
     font-family: verdana;
     width: 100%;
     height: 100%
