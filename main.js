@@ -187,11 +187,11 @@ function updateShop(shopType, itemType) {
   switch (itemType) {
     case 'old':
       nextType = 'new';
-      toolTip = (shopType == 'shoes') ? 'New shoes that help your frogs jump much higher. Multiplies bugs per second by 2.' : 'New glasses that help your frogs see much better. Multiplies bugs per click by 2.'
+      toolTip = (shopType == 'shoes') ? 'New shoes that help your frogs jump much higher. Multiplies current bugs per second by 2.' : 'New glasses that help your frogs see much better. Multiplies bugs per click by 2.'
       break;
     case 'new':
       nextType = 'designer';
-      toolTip = (shopType == 'shoes') ? 'Designer shoes that help your frogs jump a lot higher in style. Multiplies bugs per second by 2.5.' : 'New glasses that help your frogs see a lot better in style. Multiplies bugs per click by 2.5.'
+      toolTip = (shopType == 'shoes') ? 'Designer shoes that help your frogs jump a lot higher in style. Multiplies current bugs per second by 2.5.' : 'New glasses that help your frogs see a lot better in style. Multiplies bugs per click by 2.5.'
       break;
     default:
       nextType = 'obsolete'; // Obsolete has dummy .png references but will never display based on unlocks dictionary
@@ -229,8 +229,8 @@ function eatBugs(num) {
       window.setInterval(tickRate)
   */
   //Eats number of bugs based on bugs per click value
-  resources["bugs"] += num * resources["normal_frog"] * resources["bugs_per_click"]
-  resources["total_bugs"] += num * resources["normal_frog"] * resources["bugs_per_click"]
+  resources["bugs"] += num * resources["normal_frog"]
+  resources["total_bugs"] += num * resources["normal_frog"]
   updateText()
 }
 
@@ -314,7 +314,7 @@ function inviteFrog(type, num = 1) {
     resources[type + "_frog"] += num
     resources["bugs"] -= num * frogCosts[type + "_frog"]
 
-    frogCosts[type + "_frog"] = Math.round(num * permaCosts[type + "_frog"] * Math.pow(1.07, resources[type + "_frog"]))
+    frogCosts[type + "_frog"] = Math.round(num * permaCosts[type + "_frog"] * Math.pow(1.06, resources[type + "_frog"]))
     resources["bugs_per_second"] += bugsPerSecond[type + "_frog"]
     updateCanvas(type)
     updateText(type)
@@ -327,9 +327,11 @@ function inviteFrog(type, num = 1) {
 }
 
 function startDestruction() {
-  bhInterval = window.setInterval(function() {
-    yummyYummy();
-  }, 10000)
+	if (!bhInterval) {
+		bhInterval = window.setInterval(function() {
+	    yummyYummy();
+	  }, 10000)
+	}
 }
 
 function frogClicked(bugAmt = 1) {
@@ -356,7 +358,7 @@ function frogClicked(bugAmt = 1) {
       frogButton.src = 'Assets/main_frog_lily.png'
     }, 500)
   }
-  eatBugs(bugAmt);
+  eatBugs(bugAmt * resources["bugs_per_click"]);
 }
 
 
