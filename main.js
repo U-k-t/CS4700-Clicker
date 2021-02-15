@@ -15,7 +15,7 @@ var tickRate = 200
 
 var resources = {
   "bugs": 0,
-  "total_bugs":0,
+  "total_bugs": 0,
   "bugs_per_second": 0,
   "bugs_per_click": 1,
   "normal_frog": 1,
@@ -187,11 +187,11 @@ function updateShop(shopType, itemType) {
   switch (itemType) {
     case 'old':
       nextType = 'new';
-      toolTip = (shopType == 'shoes') ? 'New shoes that help your frogs jump much higher. Multiplies bugs per second by 2.' : 'New glasses that help your frogs see much better. Multiplies bugs per click by 2.'
+      toolTip = (shopType == 'shoes') ? 'New shoes that help your frogs jump much higher. Multiplies current bugs per second by 2.' : 'New glasses that help your frogs see much better. Multiplies bugs per click by 2.'
       break;
     case 'new':
       nextType = 'designer';
-      toolTip = (shopType == 'shoes') ? 'Designer shoes that help your frogs jump a lot higher in style. Multiplies bugs per second by 2.5.' : 'New glasses that help your frogs see a lot better in style. Multiplies bugs per click by 2.5.'
+      toolTip = (shopType == 'shoes') ? 'Designer shoes that help your frogs jump a lot higher in style. Multiplies current bugs per second by 2.5.' : 'New glasses that help your frogs see a lot better in style. Multiplies bugs per click by 2.5.'
       break;
     default:
       nextType = 'obsolete'; // Obsolete has dummy .png references but will never display based on unlocks dictionary
@@ -229,8 +229,8 @@ function eatBugs(num) {
       window.setInterval(tickRate)
   */
   //Eats number of bugs based on bugs per click value
-  resources["bugs"] += num * resources["normal_frog"] * resources["bugs_per_click"]
-  resources["total_bugs"] += num * resources["normal_frog"] * resources["bugs_per_click"]
+  resources["bugs"] += num * resources["normal_frog"]
+  resources["total_bugs"] += num * resources["normal_frog"]
   updateText()
 }
 
@@ -314,7 +314,7 @@ function inviteFrog(type, num = 1) {
     resources[type + "_frog"] += num
     resources["bugs"] -= num * frogCosts[type + "_frog"]
 
-    frogCosts[type + "_frog"] = Math.round(num * permaCosts[type + "_frog"] * Math.pow(1.07, resources[type + "_frog"]))
+    frogCosts[type + "_frog"] = Math.round(num * permaCosts[type + "_frog"] * Math.pow(1.06, resources[type + "_frog"]))
     resources["bugs_per_second"] += bugsPerSecond[type + "_frog"]
     updateCanvas(type)
     updateText(type)
@@ -327,9 +327,11 @@ function inviteFrog(type, num = 1) {
 }
 
 function startDestruction() {
-  bhInterval = window.setInterval(function() {
-    yummyYummy();
-  }, 10000)
+	if (!bhInterval) {
+		bhInterval = window.setInterval(function() {
+	    yummyYummy();
+	  }, 10000)
+	}
 }
 
 function frogClicked(bugAmt = 1) {
@@ -356,7 +358,7 @@ function frogClicked(bugAmt = 1) {
       frogButton.src = 'Assets/main_frog_lily.png'
     }, 500)
   }
-  eatBugs(bugAmt);
+  eatBugs(bugAmt * resources["bugs_per_click"]);
 }
 
 
@@ -365,16 +367,16 @@ function yummyYummy() {
   if (uneaten.length == 0) {
     window.clearInterval(bhInterval);
     window.clearInterval(tickCounter);
-    localStorage.setItem('total',Math.floor(resources['total_bugs']))
-    localStorage.setItem('bps',(resources['bugs_per_second'] * 5).toFixed(2))
-    localStorage.setItem('bpc',resources['bugs_per_click'].toFixed(2))
-    localStorage.setItem('tiny',resources["tiny_frog"])
-    localStorage.setItem('small',resources["small_frog"])
-    localStorage.setItem('med',resources["medium_frog"])
-    localStorage.setItem('large',resources["large_frog"])
-    localStorage.setItem('giant',resources["giant_frog"])
-    localStorage.setItem('bh',resources["black_hole_frog"])
-    localStorage.setItem('uninvited',6-resources["black_hole_frog"])
+    localStorage.setItem('total', Math.floor(resources['total_bugs']))
+    localStorage.setItem('bps', (resources['bugs_per_second'] * 5).toFixed(2))
+    localStorage.setItem('bpc', resources['bugs_per_click'].toFixed(2))
+    localStorage.setItem('tiny', resources["tiny_frog"])
+    localStorage.setItem('small', resources["small_frog"])
+    localStorage.setItem('med', resources["medium_frog"])
+    localStorage.setItem('large', resources["large_frog"])
+    localStorage.setItem('giant', resources["giant_frog"])
+    localStorage.setItem('bh', resources["black_hole_frog"])
+    localStorage.setItem('uninvited', 6 - resources["black_hole_frog"])
     window.location.replace('gameOver.html')
   }
   for (index in uneaten) {
@@ -457,7 +459,7 @@ String.prototype.toTitleCase = function() {
 };
 
 
-function postStats(){
+function postStats() {
   document.getElementById('num_total_bugs').innerHTML = localStorage.getItem('total')
   document.getElementById('num_total_bps').innerHTML = localStorage.getItem('bps')
   document.getElementById('num_total_bpc').innerHTML = localStorage.getItem('bpc')
@@ -467,8 +469,8 @@ function postStats(){
   document.getElementById('num_total_large_frog').innerHTML = localStorage.getItem('large')
   document.getElementById('num_total_giant_frog').innerHTML = localStorage.getItem('giant')
   document.getElementById('num_total_black_hole_frog').innerHTML = localStorage.getItem('bh')
-  if(localStorage.getItem('uninvited')>0)
-    document.getElementById('final_bug_stats').innerHTML+=`<li>
+  if (localStorage.getItem('uninvited') > 0)
+    document.getElementById('final_bug_stats').innerHTML += `<li>
       Uninvited Black Hole Frogs:
       <span >${localStorage.getItem('uninvited')}</span><br>
       </li>`
